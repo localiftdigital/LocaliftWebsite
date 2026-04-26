@@ -82,155 +82,167 @@
 
     /* ── HERO ── */
     #hero{
-      min-height:100vh;
+      height:100vh;
       background:var(--navy);
-      display:flex;align-items:center;
+      display:flex;align-items:stretch;
       position:relative;overflow:hidden;
-      padding:100px 5vw 80px;
+      padding:0 5vw;
     }
-    .hero-bg{
+    .hero-dots{
       position:absolute;inset:0;
-      background:
-        radial-gradient(ellipse 55% 65% at 75% 50%, rgba(79,158,52,.07) 0%,transparent 65%),
-        radial-gradient(ellipse 40% 50% at 5% 80%, rgba(22,40,64,.6) 0%,transparent 50%);
+      background-image:radial-gradient(circle,rgba(255,255,255,.038) 1px,transparent 1px);
+      background-size:36px 36px;
+      pointer-events:none;
+      mask-image:radial-gradient(ellipse 70% 80% at 20% 50%,black 15%,transparent 65%);
+      -webkit-mask-image:radial-gradient(ellipse 70% 80% at 20% 50%,black 15%,transparent 65%);
     }
-    /* Topographic canvas */
-    #topo-canvas{
-      position:absolute;inset:0;width:100%;height:100%;
-      pointer-events:none;opacity:1;
-    }
-    /* Floating glow orbs */
-    .hero-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(90px)}
-    .hero-orb-1{
-      width:480px;height:480px;top:-120px;right:8%;
-      background:radial-gradient(circle,rgba(79,158,52,.22) 0%,transparent 70%);
-      animation:orbFloat1 16s ease-in-out infinite alternate;
-    }
-    .hero-orb-2{
-      width:360px;height:360px;bottom:-60px;left:2%;
-      background:radial-gradient(circle,rgba(22,52,82,.8) 0%,transparent 70%);
-      animation:orbFloat2 20s ease-in-out infinite alternate;
-    }
-    .hero-orb-3{
-      width:260px;height:260px;top:35%;left:38%;
-      background:radial-gradient(circle,rgba(79,158,52,.1) 0%,transparent 70%);
-      animation:orbFloat1 11s ease-in-out infinite alternate-reverse;
-    }
-    @keyframes orbFloat1{from{transform:translate(0,0) scale(1)}to{transform:translate(28px,-24px) scale(1.12)}}
-    @keyframes orbFloat2{from{transform:translate(0,0) scale(1)}to{transform:translate(-20px,30px) scale(1.08)}}
-    /* Subtle scan line */
-    .hero-scan{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-    .hero-scan::after{
-      content:'';position:absolute;left:0;right:0;height:1px;
-      background:linear-gradient(90deg,transparent 0%,rgba(108,204,72,.25) 50%,transparent 100%);
-      animation:scanDown 10s linear infinite;top:-1px;
-    }
-    @keyframes scanDown{from{top:-1px}to{top:100%}}
-    /* Logo watermark */
-    .hero-logo-wm{
+    .hero-glow{
       position:absolute;
-      left:-10%;bottom:-15%;
-      width:55%;max-width:680px;
-      opacity:.045;
-      mix-blend-mode:screen;
-      pointer-events:none;user-select:none;
-      animation:wmFloat 18s ease-in-out infinite alternate;
+      width:640px;height:640px;top:-80px;left:-160px;
+      background:radial-gradient(circle,rgba(79,158,52,.09) 0%,transparent 65%);
+      pointer-events:none;
     }
-    @keyframes wmFloat{from{transform:translate(0,0) rotate(2deg)}to{transform:translate(12px,-16px) rotate(0deg)}}
+    /* right accent panel */
+    .hero-right-panel{
+      position:absolute;top:0;right:0;bottom:0;width:48%;
+      background:linear-gradient(135deg,rgba(28,52,82,.5) 0%,rgba(15,30,48,.15) 100%);
+      border-left:1px solid rgba(255,255,255,.06);
+      pointer-events:none;
+    }
     .hero-wrap{
       position:relative;z-index:2;
-      display:grid;grid-template-columns:1fr 1.35fr;
-      gap:48px;align-items:center;width:100%;max-width:1400px;margin:0 auto;
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:60px;align-items:stretch;
+      width:100%;max-width:1300px;margin:0 auto;
+      height:100%;padding:100px 0 60px;box-sizing:border-box;
     }
-    .hero-left{}
-    .hero-pill{
-      display:inline-flex;align-items:center;gap:8px;
-      background:rgba(79,158,52,.12);border:1px solid rgba(79,158,52,.28);
-      color:var(--badge);font-size:.7rem;font-weight:700;
-      letter-spacing:.1em;text-transform:uppercase;
-      padding:5px 12px;border-radius:100px;margin-bottom:22px;
-      opacity:0;animation:up .5s .2s forwards;
+    /* ── LEFT ── */
+    .hero-left{display:flex;flex-direction:column}
+    .hero-tag{
+      display:block;font-size:.67rem;font-weight:700;letter-spacing:.15em;
+      text-transform:uppercase;color:var(--badge);
+      margin-top:auto;margin-bottom:18px;
+      opacity:0;animation:up .5s .1s forwards;
     }
-    .hero-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--badge);box-shadow:0 0 6px var(--badge)}
     h1{
       font-family:'Playfair Display',serif;
-      font-size:clamp(2.8rem,5.5vw,5.4rem);
-      font-weight:900;line-height:1.02;letter-spacing:-.03em;
-      color:#fff;margin-bottom:22px;
-      opacity:0;animation:up .7s .32s forwards;
+      font-size:clamp(2.4rem,3.8vw,3.6rem);
+      font-weight:900;line-height:1.08;letter-spacing:-.03em;
+      color:#fff;margin-bottom:18px;
+      opacity:0;animation:up .7s .22s forwards;
     }
     h1 em{font-style:normal;color:var(--badge)}
     .hero-p{
-      font-size:clamp(.92rem,1.2vw,1.08rem);color:rgba(255,255,255,.55);
-      line-height:1.75;max-width:420px;margin-bottom:36px;font-weight:300;
-      opacity:0;animation:up .7s .48s forwards;
+      font-size:.95rem;color:rgba(255,255,255,.48);
+      line-height:1.78;max-width:400px;margin-bottom:34px;font-weight:300;
+      opacity:0;animation:up .7s .34s forwards;
     }
-    .hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:up .7s .62s forwards}
+    .hero-btns{
+      display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+      opacity:0;animation:up .7s .46s forwards;
+    }
     .btn{
       display:inline-flex;align-items:center;gap:8px;
-      padding:13px 26px;border-radius:var(--btn-radius);
-      font-weight:600;font-size:.92rem;text-decoration:none;
+      padding:12px 24px;border-radius:var(--btn-radius);
+      font-weight:600;font-size:.88rem;text-decoration:none;
       transition:transform .15s,box-shadow .2s,background .2s,border-color .2s;
       border:none;cursor:pointer;
     }
-    .btn-g{background:var(--accent);color:#fff}
-    .btn-g:hover{background:var(--accent-l);transform:translateY(-2px);box-shadow:0 10px 28px var(--accent-g)}
-    .btn-o{background:transparent;color:rgba(255,255,255,.75);border:1.5px solid rgba(255,255,255,.18)}
-    .btn-o:hover{border-color:rgba(255,255,255,.45);color:#fff;transform:translateY(-2px)}
+    .btn-g{background:var(--accent);color:#fff;box-shadow:0 4px 18px rgba(79,158,52,.32)}
+    .btn-g:hover{background:var(--accent-l);transform:translateY(-2px);box-shadow:0 10px 30px rgba(79,158,52,.44)}
+    .btn-o{background:transparent;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.18)}
+    .btn-o:hover{border-color:rgba(255,255,255,.42);color:#fff;transform:translateY(-2px)}
+    .btn-ghost{
+      background:transparent;border:none;cursor:pointer;text-decoration:none;
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:.88rem;font-weight:500;color:rgba(255,255,255,.6);
+      padding:12px 0;
+      transition:color .2s;
+    }
+    .btn-ghost:hover{color:#fff}
+    .btn-ghost-play{
+      width:28px;height:28px;border-radius:50%;
+      border:1.5px solid rgba(255,255,255,.25);
+      display:inline-flex;align-items:center;justify-content:center;
+      flex-shrink:0;
+      transition:border-color .2s;
+    }
+    .btn-ghost:hover .btn-ghost-play{border-color:rgba(255,255,255,.55)}
+    .btn-ghost-play svg{width:9px;height:9px;fill:currentColor;margin-left:1px}
     .btn-d{background:var(--accent);color:#fff}
-    .btn-d:hover{background:var(--accent-l);transform:translateY(-2px);box-shadow:0 10px 28px var(--accent-g)}
-
-    /* Hero right — screenshot showcase */
+    .btn-d:hover{background:var(--accent-l);transform:translateY(-2px)}
+    /* Feature row */
+    .hero-features{
+      display:flex;gap:0;
+      margin-top:auto;padding-top:28px;
+      border-top:1px solid rgba(255,255,255,.08);
+      opacity:0;animation:up .7s .6s forwards;
+    }
+    .hero-feature{
+      flex:1;padding:0 20px;
+      border-right:1px solid rgba(255,255,255,.08);
+    }
+    .hero-feature:first-child{padding-left:0}
+    .hero-feature:last-child{border-right:none}
+    .hf-icon{
+      width:26px;height:26px;border-radius:6px;
+      background:rgba(79,158,52,.14);border:1px solid rgba(79,158,52,.22);
+      display:flex;align-items:center;justify-content:center;
+      margin-bottom:9px;
+    }
+    .hf-icon svg{width:13px;height:13px;stroke:var(--badge);stroke-width:2;fill:none}
+    .hero-feature h4{font-size:.8rem;font-weight:700;color:#fff;margin-bottom:4px;letter-spacing:-.01em}
+    .hero-feature p{font-size:.73rem;color:rgba(255,255,255,.36);line-height:1.55}
+    /* ── RIGHT ── */
     .hero-right{
       position:relative;
-      opacity:0;animation:right .9s .4s forwards;
-      margin-right:-3vw;
+      display:flex;align-items:center;justify-content:center;
+      opacity:0;animation:slideIn .9s .3s forwards;
     }
-    @keyframes right{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
-    .hero-browser{
-      background:#1c3452;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.08);
+    @keyframes slideIn{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
+    /* Main device card */
+    .hero-device{
+      border-radius:20px;
       overflow:hidden;
-      box-shadow:0 40px 100px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.04);
+      box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06);
     }
-    .browser-bar{
-      height:38px;background:rgba(255,255,255,.05);
-      border-bottom:1px solid rgba(255,255,255,.06);
-      display:flex;align-items:center;padding:0 14px;gap:10px;
-    }
-    .b-dot{width:9px;height:9px;border-radius:50%}
-    .browser-url{
-      flex:1;height:22px;background:rgba(255,255,255,.07);
-      border-radius:4px;margin:0 12px;
-      display:flex;align-items:center;padding:0 10px;
-    }
-    .browser-url span{font-size:.65rem;color:rgba(255,255,255,.25);font-family:'DM Mono',monospace}
-    .browser-body{position:relative;overflow:hidden;max-height:580px}
-    .browser-body img{width:100%;display:block;object-fit:cover;object-position:top}
-    .browser-overlay{
-      position:absolute;inset:0;
-      background:linear-gradient(to bottom,transparent 60%,rgba(15,30,48,.6) 100%);
-    }
-
-    /* Floating badge */
-    .hero-float{
-      position:absolute;bottom:-16px;left:-24px;
-      background:#fff;border-radius:12px;
+    .hero-device img{width:100%;display:block}
+    /* Leads card */
+    .hero-leads{
+      position:absolute;bottom:48px;left:-28px;
+      background:#fff;border-radius:14px;
       padding:14px 18px;
-      box-shadow:0 8px 40px rgba(0,0,0,.2);
-      display:flex;align-items:center;gap:12px;
-      white-space:nowrap;
+      box-shadow:0 12px 40px rgba(0,0,0,.22);
+      min-width:170px;
     }
-    .hero-float-icon{
-      width:36px;height:36px;border-radius:8px;
-      background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    .hl-label{
+      font-size:.6rem;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;color:#9ca3af;
+      margin-bottom:6px;display:block;
     }
-    .hero-float-icon svg{width:18px;height:18px;stroke:#fff;stroke-width:2;fill:none}
-    .hero-float strong{font-size:.95rem;font-weight:700;color:var(--text);display:block;letter-spacing:-.01em}
-    .hero-float span{font-size:.72rem;color:var(--muted)}
+    .hl-row{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+    .hl-num{font-size:1.6rem;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1}
+    .hl-up{font-size:.72rem;font-weight:700;color:#16a34a}
+    .hl-chart svg{display:block}
+    /* Views card */
+    .hero-views{
+      position:absolute;bottom:48px;right:-20px;
+      background:rgba(22,40,64,.95);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:12px;padding:12px 16px;
+      box-shadow:0 8px 32px rgba(0,0,0,.35);
+    }
+    .hv-label{
+      font-size:.6rem;font-weight:700;letter-spacing:.1em;
+      text-transform:uppercase;color:rgba(255,255,255,.38);
+      margin-bottom:4px;display:block;
+    }
+    .hv-row{display:flex;align-items:baseline;gap:6px}
+    .hv-num{font-size:1.2rem;font-weight:800;color:#fff;letter-spacing:-.02em}
+    .hv-up{font-size:.68rem;font-weight:700;color:var(--badge)}
 
-    @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+    @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
     /* ── TICKER ── */
     .ticker{
@@ -555,6 +567,10 @@
     @media(max-width:960px){
       .hero-wrap{grid-template-columns:1fr}
       .hero-right{display:none}
+      .hero-right-panel{display:none}
+      .hero-features{gap:16px;flex-direction:column}
+      .hero-feature{padding:0!important;border-right:none!important;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:16px!important}
+      .hero-feature:last-child{border-bottom:none;padding-bottom:0!important}
       .why-wrap{grid-template-columns:1fr;gap:40px}
       .why-ph{aspect-ratio:16/9}
       .svc-grid{grid-template-columns:1fr}
@@ -607,46 +623,79 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
-  <canvas id="topo-canvas"></canvas>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-orb hero-orb-3"></div>
-  <div class="hero-scan"></div>
-  <img class="hero-logo-wm" src="uploads/Reverse.png" alt="" aria-hidden="true" />
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-right-panel"></div>
+
   <div class="hero-wrap">
+    <!-- LEFT -->
     <div class="hero-left">
-      <div class="hero-pill">Web Design &amp; Development</div>
-      <h1>Websites That<br /><em>Lift Your</em><br />Business.</h1>
-      <p class="hero-p">We build fast, modern, conversion-ready websites for local businesses, designed to attract real customers and grow your presence online.</p>
+      <span class="hero-tag">Web Design for Local Businesses</span>
+      <h1>Websites that<br />help local businesses<br /><em>grow.</em></h1>
+      <p class="hero-p">Localift builds modern, high-converting websites for local businesses that want more customers, more trust, and a stronger online presence.</p>
       <div class="hero-btns">
-        <a href="#contact" class="btn btn-g">
-          Contact Us
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <a href="#contact" class="btn btn-g">Get in Touch
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href="#services" class="btn btn-o">See Our Services</a>
+        <a href="#services" class="btn-ghost">
+          <span class="btn-ghost-play"><svg viewBox="0 0 10 12"><path d="M1 1l8 5-8 5V1z"/></svg></span>
+          View Our Work
+        </a>
+      </div>
+      <div class="hero-features">
+        <div class="hero-feature">
+          <div class="hf-icon">
+            <svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h4>Fast Turnaround</h4>
+          <p>Website delivered on time, every time.</p>
+        </div>
+        <div class="hero-feature">
+          <div class="hf-icon">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h4>Affordable Pricing</h4>
+          <p>Professional websites without the agency price.</p>
+        </div>
+        <div class="hero-feature">
+          <div class="hf-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h4>Ongoing Support</h4>
+          <p>We're here after launch whenever you need us.</p>
+        </div>
       </div>
     </div>
+
+    <!-- RIGHT -->
     <div class="hero-right">
-      <div class="hero-browser">
-        <div class="browser-bar">
-          <div class="b-dot" style="background:#ff5f57"></div>
-          <div class="b-dot" style="background:#febc2e"></div>
-          <div class="b-dot" style="background:#28c840"></div>
-          <div class="browser-url"><span>localift-client-website.com</span></div>
+      <div class="hero-device">
+        <img src="uploads/Web on Mac.png" alt="Client website example by Localift" />
+      </div>
+      <div class="hero-leads">
+        <span class="hl-label">New Leads</span>
+        <div class="hl-row">
+          <span class="hl-num">128</span>
+          <span class="hl-up">↑ +27%</span>
         </div>
-        <div class="browser-body">
-          <img src="uploads/Screenshot 2026-04-26 at 12.30.52 PM.png" alt="Example website design by Localift" />
-          <div class="browser-overlay"></div>
+        <div class="hl-chart">
+          <svg width="130" height="36" viewBox="0 0 130 36" fill="none">
+            <defs>
+              <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#16a34a" stop-opacity=".18"/>
+                <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0 30 C15 28 22 24 35 20 C48 16 55 14 68 10 C81 6 90 5 104 3 C112 2 120 2 130 1 L130 36 L0 36Z" fill="url(#chartFill)"/>
+            <polyline points="0,30 35,20 68,10 104,3 130,1" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
         </div>
       </div>
-      <div class="hero-float">
-        <div class="hero-float-icon">
-          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-        </div>
-        <div>
-          <strong>3× More Leads</strong>
-          <span>with a professional local website</span>
+      <div class="hero-views">
+        <span class="hv-label">Page Views</span>
+        <div class="hv-row">
+          <span class="hv-num">3.2K</span>
+          <span class="hv-up">+7%</span>
         </div>
       </div>
     </div>
@@ -1058,71 +1107,6 @@ No templates, no shortcuts, no surprises.</p>
 </script>
 
 <script>
-  // ── Topographic contour lines ──
-  (function(){
-    const canvas = document.getElementById('topo-canvas');
-    const ctx = canvas.getContext('2d');
-
-    function draw(){
-      const hero = document.getElementById('hero');
-      const W = canvas.width  = hero.offsetWidth;
-      const H = canvas.height = hero.offsetHeight;
-      ctx.clearRect(0,0,W,H);
-
-      // Three "peak" centres that pull contour lines upward
-      const peaks = [
-        {cx:W*0.72, cy:H*0.58, str:160, r:W*0.38},
-        {cx:W*0.28, cy:H*0.42, str:110, r:W*0.28},
-        {cx:W*0.50, cy:H*0.78, str: 80, r:W*0.22},
-      ];
-
-      const totalLines = 32;
-      const steps = 120;
-
-      for(let i=0;i<totalLines;i++){
-        const progress = i/totalLines;
-        // Base Y sweeps from slightly above top to slightly below bottom
-        const baseY = -H*0.06 + progress * H*1.12;
-
-        const pts=[];
-        for(let s=0;s<=steps;s++){
-          const x = (W/steps)*s;
-          let y = baseY;
-          // Each peak lifts the lines near it
-          for(const p of peaks){
-            const dx = x - p.cx;
-            const dy = baseY - p.cy;
-            const dist = Math.sqrt(dx*dx + dy*dy);
-            const influence = Math.max(0, 1 - dist/p.r);
-            // Smooth lift with a bell curve
-            y -= p.str * influence * influence;
-          }
-          pts.push({x,y});
-        }
-
-        // Draw as smooth quadratic bezier chain
-        ctx.beginPath();
-        ctx.moveTo(pts[0].x, pts[0].y);
-        for(let s=1;s<pts.length-1;s++){
-          const mx=(pts[s].x+pts[s+1].x)/2;
-          const my=(pts[s].y+pts[s+1].y)/2;
-          ctx.quadraticCurveTo(pts[s].x, pts[s].y, mx, my);
-        }
-        ctx.lineTo(pts[pts.length-1].x, pts[pts.length-1].y);
-
-        // Every 4th line slightly brighter — mimics printed topo maps
-        const base = 0.038;
-        const boost = (i%4===0) ? 0.022 : 0;
-        ctx.strokeStyle = `rgba(255,255,255,${base+boost})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-    }
-
-    draw();
-    window.addEventListener('resize', draw);
-  })();
-
   // ── Scroll reveal ──
   const obs = new IntersectionObserver(e=>{
     e.forEach(x=>{

@@ -1,0 +1,9 @@
+node_modules/
+package.json
+package-lock.json
+screenshot.mjs
+temporary screenshots/
+.DS_Store
+*.png
+!uploads/*.png
+CLAUDE.md
