@@ -18,7 +18,7 @@
       --accent-l: #4f9e34;
       --accent-g: rgba(79,158,52,.15);
       --accent-b: rgba(79,158,52,.3);
-      --badge:    #6ccc48;
+      --badge:    #8edf62;
       --white:    #ffffff;
       --off:      #f6f7f9;
       --border:   #e4e8ef;
@@ -94,13 +94,10 @@
         radial-gradient(ellipse 55% 65% at 75% 50%, rgba(79,158,52,.07) 0%,transparent 65%),
         radial-gradient(ellipse 40% 50% at 5% 80%, rgba(22,40,64,.6) 0%,transparent 50%);
     }
-    /* Dot grid */
-    .hero-dots{
-      position:absolute;inset:0;pointer-events:none;
-      background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);
-      background-size:38px 38px;
-      mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 30%,transparent 80%);
-      -webkit-mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 30%,transparent 80%);
+    /* Topographic canvas */
+    #topo-canvas{
+      position:absolute;inset:0;width:100%;height:100%;
+      pointer-events:none;opacity:1;
     }
     /* Floating glow orbs */
     .hero-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(90px)}
@@ -129,10 +126,21 @@
       animation:scanDown 10s linear infinite;top:-1px;
     }
     @keyframes scanDown{from{top:-1px}to{top:100%}}
+    /* Logo watermark */
+    .hero-logo-wm{
+      position:absolute;
+      left:-10%;bottom:-15%;
+      width:55%;max-width:680px;
+      opacity:.045;
+      mix-blend-mode:screen;
+      pointer-events:none;user-select:none;
+      animation:wmFloat 18s ease-in-out infinite alternate;
+    }
+    @keyframes wmFloat{from{transform:translate(0,0) rotate(2deg)}to{transform:translate(12px,-16px) rotate(0deg)}}
     .hero-wrap{
       position:relative;z-index:2;
-      display:grid;grid-template-columns:1fr 1fr;
-      gap:64px;align-items:center;width:100%;max-width:1400px;margin:0 auto;
+      display:grid;grid-template-columns:1fr 1.35fr;
+      gap:48px;align-items:center;width:100%;max-width:1400px;margin:0 auto;
     }
     .hero-left{}
     .hero-pill{
@@ -176,6 +184,7 @@
     .hero-right{
       position:relative;
       opacity:0;animation:right .9s .4s forwards;
+      margin-right:-3vw;
     }
     @keyframes right{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
     .hero-browser{
@@ -197,7 +206,7 @@
       display:flex;align-items:center;padding:0 10px;
     }
     .browser-url span{font-size:.65rem;color:rgba(255,255,255,.25);font-family:'DM Mono',monospace}
-    .browser-body{position:relative;overflow:hidden;max-height:480px}
+    .browser-body{position:relative;overflow:hidden;max-height:580px}
     .browser-body img{width:100%;display:block;object-fit:cover;object-position:top}
     .browser-overlay{
       position:absolute;inset:0;
@@ -252,35 +261,58 @@
 
     /* ── SERVICES ── */
     #services{background:var(--off)}
-    .svc-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:20px}
-    .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .svc-card{
-      background:var(--white);border:1.5px solid var(--border);
-      border-radius:var(--card-radius);overflow:hidden;
-      transition:border-color .25s,box-shadow .25s,transform .25s;
+    .svc-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:20px}
+    .svc-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+
+    /* Image side */
+    .svc-img-side{position:relative}
+    .svc-img-frame{
+      border-radius:20px;overflow:hidden;
+      box-shadow:0 32px 80px rgba(0,0,0,.14),0 0 0 1.5px var(--border);
     }
-    .svc-card:hover{border-color:rgba(79,158,52,.4);box-shadow:0 20px 52px rgba(0,0,0,.1),0 0 0 1px rgba(79,158,52,.12);transform:translateY(-6px)}
-    .svc-img-wrap{
-      height:220px;position:relative;overflow:hidden;
+    .svc-img-frame img{width:100%;display:block}
+
+    /* Service list side */
+    .svc-list{display:flex;flex-direction:column;gap:0}
+    .svc-row{
+      display:flex;gap:20px;padding:28px 0;
+      border-bottom:1px solid var(--border);
+      cursor:default;
+      transition:background .2s;
     }
-    .svc-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
-    .svc-card:hover .svc-img-wrap img{transform:scale(1.05)}
-    /* Placeholder for svc images */
-    .svc-ph{
-      width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+    .svc-row:first-child{border-top:1px solid var(--border)}
+    .svc-row-left{display:flex;flex-direction:column;align-items:center;gap:0;padding-top:3px}
+    .svc-dot{
+      width:36px;height:36px;border-radius:50%;flex-shrink:0;
+      border:1.5px solid var(--border);background:var(--white);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Playfair Display',serif;font-size:.78rem;font-weight:900;
+      color:var(--muted);
+      transition:border-color .25s,background .25s,color .25s;
     }
-    .svc-ph-1{background:linear-gradient(135deg,#162840 0%,#1c3452 100%)}
-    .svc-ph-2{background:linear-gradient(135deg,#162840 0%,#1e3a1a 100%)}
-    .svc-ph-3{background:linear-gradient(135deg,#1e1a3a 0%,#162840 100%)}
-    .svc-ph span{font-family:'DM Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.15);letter-spacing:.08em;text-transform:uppercase;text-align:center;line-height:1.8}
-    .svc-body{padding:26px 24px 28px}
-    .svc-num{font-size:.68rem;font-weight:700;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;margin-bottom:8px;display:block}
-    .svc-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:10px;line-height:1.25}
-    .svc-card p{font-size:.9rem;color:var(--muted);line-height:1.7;font-weight:300}
+    .svc-row:hover .svc-dot{border-color:var(--accent);background:var(--accent);color:#fff}
+    .svc-row-content{flex:1}
+    .svc-row-tag{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;display:block;opacity:0;transform:translateX(-6px);transition:opacity .25s,transform .25s}
+    .svc-row:hover .svc-row-tag{opacity:1;transform:none}
+    .svc-row h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:7px;line-height:1.2;transition:color .2s}
+    .svc-row:hover h3{color:var(--accent)}
+    .svc-row p{font-size:.875rem;color:var(--muted);line-height:1.7;font-weight:300}
+    .svc-row-arrow{
+      align-self:center;flex-shrink:0;
+      width:32px;height:32px;border-radius:50%;
+      border:1.5px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      transition:border-color .25s,background .25s,transform .25s;
+    }
+    .svc-row-arrow svg{width:13px;height:13px;stroke:var(--muted);stroke-width:2;fill:none;transition:stroke .25s}
+    .svc-row:hover .svc-row-arrow{border-color:var(--accent);background:var(--accent);transform:translateX(3px)}
+    .svc-row:hover .svc-row-arrow svg{stroke:#fff}
+    @media(max-width:960px){.svc-layout{grid-template-columns:1fr;gap:40px}}
+    @media(max-width:540px){.svc-img-frame{border-radius:14px}}
 
     /* ── WHY US ── */
     #why{background:var(--white)}
-    .why-wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+    .why-wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
     .why-left{}
     .why-left h2{margin-bottom:16px}
     .why-left .sub{margin-bottom:40px}
@@ -295,29 +327,24 @@
     .w-ic svg{width:15px;height:15px;stroke:var(--accent);stroke-width:2;fill:none}
     .w-item h4{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:4px}
     .w-item p{font-size:.8rem;color:var(--muted);line-height:1.6;font-weight:300}
-    .why-right{position:relative}
+    .why-right{position:relative;padding-bottom:32px}
     .why-img-wrap{
-      border-radius:var(--card-radius);overflow:hidden;
+      border-radius:18px;overflow:hidden;
       border:1.5px solid var(--border);
       box-shadow:0 24px 72px rgba(0,0,0,.09);
+      aspect-ratio:1369/1149;
     }
-    .why-img-wrap img{width:100%;display:block}
-    .why-ph{
-      aspect-ratio:4/5;
-      background:linear-gradient(145deg,#162840 0%,#0f1e30 100%);
-      display:flex;align-items:center;justify-content:center;
-    }
-    .why-ph span{font-family:'DM Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.12);letter-spacing:.08em;text-transform:uppercase;text-align:center;line-height:1.8}
+    .why-img-wrap img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}
     .why-stats{
-      position:absolute;bottom:-20px;right:-20px;
+      position:absolute;bottom:0;right:-16px;
       background:var(--navy);border-radius:14px;
-      padding:20px 24px;
+      padding:18px 22px;
       box-shadow:0 12px 40px rgba(0,0,0,.25);
     }
-    .why-stats-row{display:flex;gap:24px}
-    .ws strong{display:block;font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:#fff;letter-spacing:-.04em}
+    .why-stats-row{display:flex;gap:20px}
+    .ws strong{display:block;font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#fff;letter-spacing:-.04em}
     .ws strong em{font-style:normal;color:var(--badge)}
-    .ws span{font-size:.72rem;color:rgba(255,255,255,.4)}
+    .ws span{font-size:.68rem;color:rgba(255,255,255,.4)}
     .ws-sep{width:1px;background:rgba(255,255,255,.1)}
 
     /* ── STATS STRIP ── */
@@ -362,38 +389,93 @@
     .p-step p{font-size:.88rem;color:var(--muted);line-height:1.7;font-weight:300}
 
     /* ── ABOUT ── */
-    #about{background:var(--white)}
-    .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-    .about-img-side{position:relative}
-    .about-img-box{
-      border-radius:var(--card-radius);overflow:hidden;
-      border:1.5px solid var(--border);
-      box-shadow:0 20px 60px rgba(0,0,0,.08);
+    #about{background:var(--navy);padding:var(--sec-pad) 5vw calc(var(--sec-pad) + 40px)}
+    .about-wrap{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+
+    /* ── Bento grid ── */
+    .ab-bento{
+      display:grid;
+      grid-template-columns:1.15fr 1fr;
+      grid-template-rows:1fr 1fr;
+      gap:12px;
+      height:620px;
     }
-    .about-img-box img{width:100%;display:block}
-    .about-ph{
-      aspect-ratio:4/5;
-      background:linear-gradient(145deg,#162840 0%,#0f1e30 100%);
-      display:flex;align-items:center;justify-content:center;
+
+    /* Cell shared style */
+    .ab-cell{
+      background:var(--navy-mid);
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:18px;overflow:hidden;
+      position:relative;
     }
-    .about-ph span{font-family:'DM Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.12);letter-spacing:.08em;text-transform:uppercase;text-align:center;line-height:1.8}
-    .about-mark{
-      position:absolute;bottom:-16px;right:-16px;
-      width:100px;height:100px;
-      background:var(--navy);border-radius:50%;
-      border:4px solid var(--white);
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 8px 24px rgba(0,0,0,.15);
+
+    /* Cell 1 — site preview (spans both rows) */
+    .ab-cell-preview{grid-row:1/3}
+    .ab-preview-bar{
+      height:30px;background:rgba(255,255,255,.04);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex;align-items:center;padding:0 12px;gap:5px;flex-shrink:0;
     }
-    .about-mark img{width:56px}
-    .about-text h2{margin-bottom:18px}
-    .about-text .sub{margin-bottom:28px}
-    .checks{display:flex;flex-direction:column;gap:11px;margin-bottom:32px}
-    .ck{display:flex;align-items:center;gap:11px;font-size:.92rem;color:var(--text);font-weight:500}
-    .ck::before{
-      content:'';flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--accent);
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-      background-size:11px;background-repeat:no-repeat;background-position:center;
+    .ab-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .ab-preview-img{position:relative;height:calc(100% - 30px)}
+    .ab-preview-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
+    .ab-preview-img::after{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(to bottom,transparent 55%,var(--navy-mid) 100%);
+    }
+    /* Floating badge inside preview */
+    .ab-preview-badge{
+      position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
+      background:rgba(255,255,255,.08);backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.12);border-radius:100px;
+      padding:7px 16px;display:flex;align-items:center;gap:8px;
+      white-space:nowrap;z-index:2;
+    }
+    .ab-preview-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--badge);box-shadow:0 0 6px var(--badge);flex-shrink:0}
+    .ab-preview-badge span{font-size:.65rem;font-weight:600;color:#fff}
+
+    /* Cell 2 — Why Us (top right) */
+    .ab-cell-why{padding:22px 22px 20px}
+    .ab-cell-why-icon{
+      width:34px;height:34px;border-radius:9px;
+      background:var(--accent-g);border:1px solid var(--accent-b);
+      display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+    }
+    .ab-cell-why-icon svg{width:15px;height:15px;stroke:var(--accent);stroke-width:2;fill:none}
+    .ab-cell-why h4{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:800;color:#fff;margin-bottom:14px;line-height:1.3;letter-spacing:-.01em}
+    .ab-why-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+    .ab-why-row:last-child{margin-bottom:0}
+    .ab-why-chk{width:14px;height:14px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .ab-why-chk svg{width:7px;height:7px;stroke:#fff;stroke-width:3;fill:none}
+    .ab-why span,.ab-cell-why .ab-why-row span{font-size:.72rem;color:rgba(255,255,255,.7);line-height:1.4}
+
+    /* Cell 3 — Analytics (bottom right) */
+    .ab-cell-stats{padding:20px 22px}
+    .ab-cell-stats-title{
+      font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      color:rgba(255,255,255,.35);display:block;margin-bottom:14px;
+    }
+    .ab-chart{margin-bottom:16px}
+    .ab-chart svg{width:100%;display:block}
+    .ab-stats{display:flex;justify-content:space-between}
+    .ab-stat-label{font-size:.55rem;color:rgba(255,255,255,.35);display:block;margin-bottom:3px}
+    .ab-stat-val{font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-.03em;display:block}
+    .ab-stat-val.grn{color:var(--badge)}
+
+    /* Right text */
+    .about-right{}
+    .about-right .tag{color:var(--badge)}
+    .about-right h2{color:#fff;margin-bottom:18px}
+    .about-right .sub{color:rgba(255,255,255,.5);margin-bottom:32px}
+    .checks{display:flex;flex-direction:column;gap:13px;margin-bottom:36px}
+    .ck{display:flex;align-items:center;gap:12px;font-size:.92rem;color:rgba(255,255,255,.85);font-weight:400}
+    .ck-dot{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center}
+    .ck-dot svg{width:11px;height:11px;stroke:#fff;stroke-width:3;fill:none}
+
+    @media(max-width:960px){
+      .about-wrap{grid-template-columns:1fr}
+      .about-left{height:620px}
+      .ab-circle{width:380px;height:380px}
     }
 
     /* ── CONTACT ── */
@@ -526,11 +608,12 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <div class="hero-dots"></div>
+  <canvas id="topo-canvas"></canvas>
   <div class="hero-orb hero-orb-1"></div>
   <div class="hero-orb hero-orb-2"></div>
   <div class="hero-orb hero-orb-3"></div>
   <div class="hero-scan"></div>
+  <img class="hero-logo-wm" src="uploads/Reverse.png" alt="" aria-hidden="true" />
   <div class="hero-wrap">
     <div class="hero-left">
       <div class="hero-pill">Web Design &amp; Development</div>
@@ -553,7 +636,7 @@
           <div class="browser-url"><span>localift-client-website.com</span></div>
         </div>
         <div class="browser-body">
-          <img src="uploads/original-a0a8888cf1fc8a046b657338365ae367.webp" alt="Example website design by Localift" />
+          <img src="uploads/Screenshot 2026-04-26 at 12.30.52 PM.png" alt="Example website design by Localift" />
           <div class="browser-overlay"></div>
         </div>
       </div>
@@ -601,35 +684,47 @@
       <p class="sub r r2">Custom-crafted to match your brand. 
 No templates, no shortcuts, no surprises.</p>
     </div>
-    <div class="svc-grid">
-      <div class="svc-card r r1">
-        <div class="svc-img-wrap">
-          <div class="svc-ph svc-ph-1"><span>website build<br />example image<br />drop here</span></div>
-        </div>
-        <div class="svc-body">
-          <span class="svc-num">01 · New Build</span>
-          <h3>Website Building &amp; Development</h3>
-          <p>Brand-new websites built from scratch. Clean, fast, mobile-ready, and structured to help your business show up in local search.</p>
+    <div class="svc-layout">
+      <!-- Image -->
+      <div class="svc-img-side r r1">
+        <div class="svc-img-frame">
+          <img src="uploads/Web on Mac.png" alt="Example website designed by Localift" />
         </div>
       </div>
-      <div class="svc-card r r2">
-        <div class="svc-img-wrap">
-          <div class="svc-ph svc-ph-2"><span>before / after<br />redesign example<br />drop here</span></div>
+      <!-- Service list -->
+      <div class="svc-list r r2">
+        <div class="svc-row">
+          <div class="svc-row-left">
+            <div class="svc-dot">01</div>
+          </div>
+          <div class="svc-row-content">
+            <span class="svc-row-tag">New Build</span>
+            <h3>Website Building &amp; Development</h3>
+            <p>Brand-new websites built from scratch — clean, fast, and structured to help your business show up in local search.</p>
+          </div>
+          <a href="#contact" class="svc-row-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
-        <div class="svc-body">
-          <span class="svc-num">02 · Refresh</span>
-          <h3>Website Redesign</h3>
-          <p>Have an outdated site? We transform it into a modern, high-performing website that reflects the real quality of your business.</p>
+        <div class="svc-row">
+          <div class="svc-row-left">
+            <div class="svc-dot">02</div>
+          </div>
+          <div class="svc-row-content">
+            <span class="svc-row-tag">Refresh</span>
+            <h3>Website Redesign</h3>
+            <p>We transform outdated sites into modern, high-performing websites that reflect the real quality of your business.</p>
+          </div>
+          <a href="#contact" class="svc-row-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
-      </div>
-      <div class="svc-card r r3">
-        <div class="svc-img-wrap">
-          <div class="svc-ph svc-ph-3"><span>repair / fix<br />example image<br />drop here</span></div>
-        </div>
-        <div class="svc-body">
-          <span class="svc-num">03 · Repair</span>
-          <h3>Website Repair</h3>
-          <p>Broken pages, slow load times, security issues? We diagnose and fix what's wrong so your site works reliably at all times.</p>
+        <div class="svc-row">
+          <div class="svc-row-left">
+            <div class="svc-dot">03</div>
+          </div>
+          <div class="svc-row-content">
+            <span class="svc-row-tag">Repair</span>
+            <h3>Website Repair</h3>
+            <p>Broken pages, slow load times, security issues — we diagnose and fix what's wrong so your site works reliably.</p>
+          </div>
+          <a href="#contact" class="svc-row-arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>
@@ -679,7 +774,7 @@ No templates, no shortcuts, no surprises.</p>
       </div>
       <div class="why-right r r2">
         <div class="why-img-wrap">
-          <div class="why-ph"><span>team / office photo<br />or project showcase<br />drop real image here</span></div>
+          <img src="uploads/Minimalist workspace.png" alt="Localift workspace" />
         </div>
         <div class="why-stats">
           <div class="why-stats-row">
@@ -703,7 +798,7 @@ No templates, no shortcuts, no surprises.</p>
       <p>Custom-designed websites</p>
     </div>
     <div class="stat-item r r2">
-      <span class="stat-num hero-num" data-prefix="↑" data-count="3" data-suffix="×">↑0×</span>
+      <span class="stat-num hero-num" data-count="3" data-suffix="×">0×</span>
       <p>More local leads on average</p>
     </div>
     <div class="stat-item r r3">
@@ -746,30 +841,82 @@ No templates, no shortcuts, no surprises.</p>
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="sec">
-  <div class="inner">
-    <div class="about-wrap">
-      <div class="about-img-side r">
-        <div class="about-img-box">
-          <div class="about-ph"><span>founder / team photo<br />drop real image here</span></div>
+<section id="about">
+  <div class="about-wrap">
+
+    <!-- Left: bento grid -->
+    <div class="about-left r">
+      <div class="ab-bento">
+
+        <!-- Cell 1: Site preview (spans both rows) -->
+        <div class="ab-cell ab-cell-preview">
+          <div class="ab-preview-bar">
+            <div class="ab-dot" style="background:#ff5f57"></div>
+            <div class="ab-dot" style="background:#febc2e"></div>
+            <div class="ab-dot" style="background:#28c840"></div>
+          </div>
+          <div class="ab-preview-img">
+            <img src="uploads/office1.png" alt="Localift office" />
+          </div>
+          <div class="ab-preview-badge">
+            <div class="ab-preview-badge-dot"></div>
+            <span>100% Custom-Built — No templates. Ever.</span>
+          </div>
         </div>
-        <div class="about-mark">
-          <img src="uploads/Reverse.png" alt="Localift" />
+
+        <!-- Cell 2: Why Us (top right) -->
+        <div class="ab-cell ab-cell-why">
+          <div class="ab-cell-why-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Why Local Businesses<br />Choose Localift</h4>
+          <div class="ab-why-row"><div class="ab-why-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Affordable, transparent pricing</span></div>
+          <div class="ab-why-row"><div class="ab-why-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Direct communication, no middlemen</span></div>
+          <div class="ab-why-row"><div class="ab-why-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Websites built to convert visitors</span></div>
+          <div class="ab-why-row"><div class="ab-why-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Ongoing support after launch</span></div>
         </div>
-      </div>
-      <div class="about-text">
-        <span class="tag r">About Localift</span>
-        <h2 class="r r1">Helping local businesses<br />rise online.</h2>
-        <p class="sub r r2">Localift was built with one mission: give small, local businesses access to professional-grade web design without the big agency price tag. We understand the challenges of running a local business, and we build websites that work as hard as you do.</p>
-        <div class="checks r r3">
-          <div class="ck">Affordable, transparent pricing</div>
-          <div class="ck">Direct communication</div>
-          <div class="ck">Websites built to convert, not just look good</div>
-          <div class="ck">Ongoing support after launch</div>
+
+        <!-- Cell 3: Stats (bottom right) -->
+        <div class="ab-cell ab-cell-stats">
+          <span class="ab-cell-stats-title">Site Performance</span>
+          <div class="ab-chart">
+            <svg viewBox="0 0 130 52" fill="none">
+              <defs>
+                <linearGradient id="ag2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#3d7e28" stop-opacity=".25"/>
+                  <stop offset="100%" stop-color="#3d7e28" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <polygon points="0,42 18,36 36,38 52,28 68,32 84,18 100,22 116,10 130,4 130,52 0,52" fill="url(#ag2)"/>
+              <polyline points="0,42 18,36 36,38 52,28 68,32 84,18 100,22 116,10 130,4"
+                stroke="#3d7e28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <circle cx="130" cy="4" r="3" fill="#3d7e28"/>
+            </svg>
+          </div>
+          <div class="ab-stats">
+            <div><span class="ab-stat-label">Visitors</span><span class="ab-stat-val">2.4K</span></div>
+            <div><span class="ab-stat-label">Leads</span><span class="ab-stat-val">320</span></div>
+            <div><span class="ab-stat-label">Growth</span><span class="ab-stat-val grn">+48%</span></div>
+          </div>
         </div>
-        <a href="#contact" class="btn btn-g r r4" style="width:fit-content">Get in Touch →</a>
+
       </div>
     </div>
+
+    <!-- Right: text content -->
+    <div class="about-right">
+      <span class="tag r">About Localift</span>
+      <h2 class="r r1">Helping local businesses<br />rise online.</h2>
+      <p class="sub r r2">Localift was built with one mission: give small, local businesses access to professional-grade web design without the big agency price tag. We understand the challenges of running a local business, and we build websites that work as hard as you do.</p>
+      <div class="checks r r3">
+        <div class="ck"><div class="ck-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Affordable, transparent pricing</div>
+        <div class="ck"><div class="ck-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Direct communication</div>
+        <div class="ck"><div class="ck-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Websites built to convert, not just look good</div>
+        <div class="ck"><div class="ck-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Ongoing support after launch</div>
+      </div>
+      <a href="#contact" class="btn btn-g r r4" style="width:fit-content">Get in Touch →</a>
+    </div>
+
   </div>
 </section>
 
@@ -911,6 +1058,71 @@ No templates, no shortcuts, no surprises.</p>
 </script>
 
 <script>
+  // ── Topographic contour lines ──
+  (function(){
+    const canvas = document.getElementById('topo-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function draw(){
+      const hero = document.getElementById('hero');
+      const W = canvas.width  = hero.offsetWidth;
+      const H = canvas.height = hero.offsetHeight;
+      ctx.clearRect(0,0,W,H);
+
+      // Three "peak" centres that pull contour lines upward
+      const peaks = [
+        {cx:W*0.72, cy:H*0.58, str:160, r:W*0.38},
+        {cx:W*0.28, cy:H*0.42, str:110, r:W*0.28},
+        {cx:W*0.50, cy:H*0.78, str: 80, r:W*0.22},
+      ];
+
+      const totalLines = 32;
+      const steps = 120;
+
+      for(let i=0;i<totalLines;i++){
+        const progress = i/totalLines;
+        // Base Y sweeps from slightly above top to slightly below bottom
+        const baseY = -H*0.06 + progress * H*1.12;
+
+        const pts=[];
+        for(let s=0;s<=steps;s++){
+          const x = (W/steps)*s;
+          let y = baseY;
+          // Each peak lifts the lines near it
+          for(const p of peaks){
+            const dx = x - p.cx;
+            const dy = baseY - p.cy;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            const influence = Math.max(0, 1 - dist/p.r);
+            // Smooth lift with a bell curve
+            y -= p.str * influence * influence;
+          }
+          pts.push({x,y});
+        }
+
+        // Draw as smooth quadratic bezier chain
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        for(let s=1;s<pts.length-1;s++){
+          const mx=(pts[s].x+pts[s+1].x)/2;
+          const my=(pts[s].y+pts[s+1].y)/2;
+          ctx.quadraticCurveTo(pts[s].x, pts[s].y, mx, my);
+        }
+        ctx.lineTo(pts[pts.length-1].x, pts[pts.length-1].y);
+
+        // Every 4th line slightly brighter — mimics printed topo maps
+        const base = 0.038;
+        const boost = (i%4===0) ? 0.022 : 0;
+        ctx.strokeStyle = `rgba(255,255,255,${base+boost})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+
+    draw();
+    window.addEventListener('resize', draw);
+  })();
+
   // ── Scroll reveal ──
   const obs = new IntersectionObserver(e=>{
     e.forEach(x=>{
