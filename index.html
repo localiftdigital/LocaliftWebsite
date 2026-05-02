@@ -436,94 +436,81 @@
     .p-step p{font-size:.88rem;color:var(--muted);line-height:1.7;font-weight:300}
 
     /* ── ABOUT ── */
-    #about{background:var(--navy);padding:var(--sec-pad) 5vw calc(var(--sec-pad) + 40px)}
-    .about-wrap{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
-
-    /* ── Bento grid ── */
-    .ab-bento{
-      display:grid;
-      grid-template-columns:1.15fr 1fr;
-      grid-template-rows:1fr 1fr;
-      gap:12px;
-      height:620px;
-    }
-
-    /* Cell shared style */
-    .ab-cell{
-      background:var(--navy-mid);
-      border:1px solid rgba(255,255,255,.07);
-      border-radius:18px;overflow:hidden;
+    #about{
+      background:
+        radial-gradient(circle at 30% 40%,rgba(64,91,132,.25) 0 0,rgba(64,91,132,.25) 26%,transparent 26.2%),
+        radial-gradient(circle at 72% 64%,rgba(37,126,52,.08),transparent 28%),
+        linear-gradient(180deg,#061a2b 0%,#071d31 62%,#06192b 100%);
+      padding:104px 5vw 108px;
+      overflow:hidden;
       position:relative;
     }
-
-    /* Cell 1 — site preview (spans both rows) */
-    .ab-cell-preview{grid-row:1/3}
-    .ab-preview-bar{
-      height:30px;background:rgba(255,255,255,.04);
-      border-bottom:1px solid rgba(255,255,255,.06);
-      display:flex;align-items:center;padding:0 12px;gap:5px;flex-shrink:0;
+    .about-wrap{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.04fr) minmax(410px,.86fr);gap:76px;align-items:center}
+    .about-left{position:relative;min-height:560px;max-width:660px}
+    .about-orbit{position:absolute;left:-30px;top:-70px;width:575px;height:575px;border-radius:50%;background:rgba(255,255,255,.058);border:1px solid rgba(255,255,255,.025)}
+    .about-browser{
+      position:absolute;left:62px;top:28px;width:472px;height:252px;z-index:1;
+      border-radius:9px;overflow:hidden;transform:rotate(-5deg);
+      background:#f7f6f3;border:1.5px solid rgba(151,180,214,.5);
+      box-shadow:0 18px 58px rgba(0,0,0,.2);
     }
-    .ab-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-    .ab-preview-img{position:relative;height:calc(100% - 30px)}
-    .ab-preview-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
-    .ab-preview-img::after{
-      content:'';position:absolute;inset:0;
-      background:linear-gradient(to bottom,transparent 55%,var(--navy-mid) 100%);
+    .about-browser-bar{height:56px;background:#0a2137;color:#fff;display:flex;align-items:center;padding:0 24px;gap:18px}
+    .about-browser-brand{display:flex;align-items:center;gap:9px;margin-right:auto}
+    .about-browser-brand img{width:21px;height:21px;object-fit:cover}
+    .about-browser-brand span{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:900}
+    .about-browser-nav{display:flex;gap:17px;font-size:.52rem;color:rgba(255,255,255,.78)}
+    .about-browser-body{height:196px;background:linear-gradient(180deg,#f7f6f3,#fff);position:relative}
+    .about-browser-body::before{
+      content:'';position:absolute;left:42px;top:58px;width:334px;height:226px;
+      border-radius:9px;background:#f7f6f3;border:1px solid rgba(12,32,51,.12);
+      box-shadow:0 10px 32px rgba(0,0,0,.05);
     }
-    /* Floating badge inside preview */
-    .ab-preview-badge{
-      position:absolute;bottom:18px;left:50%;transform:translateX(-50%);
-      background:rgba(255,255,255,.08);backdrop-filter:blur(12px);
-      border:1px solid rgba(255,255,255,.12);border-radius:100px;
-      padding:7px 16px;display:flex;align-items:center;gap:8px;
-      white-space:nowrap;z-index:2;
+    .about-card{
+      position:absolute;background:#f7f6f3;color:#07192b;border:1px solid rgba(12,32,51,.12);
+      border-radius:9px;box-shadow:0 22px 62px rgba(0,0,0,.24);
     }
-    .ab-preview-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--badge);box-shadow:0 0 6px var(--badge);flex-shrink:0}
-    .ab-preview-badge span{font-size:.65rem;font-weight:600;color:#fff}
-
-    /* Cell 2 — Why Us (top right) */
-    .ab-cell-why{padding:22px 22px 20px}
-    .ab-cell-why-icon{
-      width:34px;height:34px;border-radius:9px;
-      background:var(--accent-g);border:1px solid var(--accent-b);
-      display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+    .about-card-main{
+      left:76px;top:112px;width:338px;height:390px;z-index:3;transform:rotate(-5deg);
+      padding:72px 46px 36px;
     }
-    .ab-cell-why-icon svg{width:15px;height:15px;stroke:var(--accent);stroke-width:2;fill:none}
-    .ab-cell-why h4{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:800;color:#fff;margin-bottom:14px;line-height:1.3;letter-spacing:-.01em}
-    .ab-why-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-    .ab-why-row:last-child{margin-bottom:0}
-    .ab-why-chk{width:14px;height:14px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .ab-why-chk svg{width:7px;height:7px;stroke:#fff;stroke-width:3;fill:none}
-    .ab-why span,.ab-cell-why .ab-why-row span{font-size:.72rem;color:rgba(255,255,255,.7);line-height:1.4}
-
-    /* Cell 3 — Analytics (bottom right) */
-    .ab-cell-stats{padding:20px 22px}
-    .ab-cell-stats-title{
-      font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-      color:rgba(255,255,255,.35);display:block;margin-bottom:14px;
+    .about-kicker{font-size:.52rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#257634;margin-bottom:11px}
+    .about-card-main h3{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.02;font-weight:900;letter-spacing:-.04em;margin-bottom:24px}
+    .about-card-main h3 em{font-style:normal;color:#257634}
+    .about-card-main p{font-size:.82rem;line-height:1.68;color:#334155;margin-bottom:24px}
+    .about-card-main .btn{font-size:.78rem;padding:11px 18px}
+    .about-card-process{left:342px;top:126px;width:245px;height:330px;z-index:4;transform:rotate(-5deg);padding:36px 30px}
+    .about-card-process h3{font-family:'Playfair Display',serif;font-size:1.24rem;font-weight:900;letter-spacing:-.03em;margin-bottom:18px}
+    .process-mini{display:grid;grid-template-columns:31px 1fr;gap:11px;margin-bottom:15px;padding-bottom:12px;border-bottom:1px solid rgba(15,30,48,.1)}
+    .process-mini:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+    .process-mini-icon{width:28px;height:28px;border-radius:7px;background:#dcebd8;display:flex;align-items:center;justify-content:center}
+    .process-mini-icon svg{width:13px;height:13px;stroke:#257634;fill:none;stroke-width:2}
+    .process-mini strong{display:block;font-size:.64rem;margin-bottom:4px;color:#07192b}
+    .process-mini span{display:block;font-size:.56rem;line-height:1.45;color:#344154}
+    .about-card-dark{
+      left:118px;bottom:38px;width:282px;height:178px;z-index:5;transform:rotate(-5deg);
+      background:#071d31;color:#fff;border-color:rgba(255,255,255,.12);padding:28px 32px;
     }
-    .ab-chart{margin-bottom:16px}
-    .ab-chart svg{width:100%;display:block}
-    .ab-stats{display:flex;justify-content:space-between}
-    .ab-stat-label{font-size:.55rem;color:rgba(255,255,255,.35);display:block;margin-bottom:3px}
-    .ab-stat-val{font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-.03em;display:block}
-    .ab-stat-val.grn{color:var(--badge)}
-
-    /* Right text */
-    .about-right{}
-    .about-right .tag{color:var(--badge)}
-    .about-right h2{color:#fff;margin-bottom:18px}
-    .about-right .sub{color:rgba(255,255,255,.5);margin-bottom:32px}
-    .checks{display:flex;flex-direction:column;gap:13px;margin-bottom:36px}
-    .ck{display:flex;align-items:center;gap:12px;font-size:.92rem;color:rgba(255,255,255,.85);font-weight:400}
-    .ck-dot{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center}
-    .ck-dot svg{width:11px;height:11px;stroke:#fff;stroke-width:3;fill:none}
-
-    @media(max-width:960px){
-      .about-wrap{grid-template-columns:1fr}
-      .about-left{height:620px}
-      .ab-circle{width:380px;height:380px}
+    .about-card-dark h3{font-family:'Playfair Display',serif;font-size:1.05rem;line-height:1.18;margin-bottom:15px}
+    .about-card-dark .mini-check{font-size:.64rem;color:rgba(255,255,255,.9);gap:9px;margin-bottom:10px}
+    .about-card-dark .mini-check-dot{width:15px;height:15px}
+    .about-card-stats{
+      left:380px;bottom:6px;width:250px;height:170px;z-index:6;transform:rotate(-5deg);
+      padding:19px 21px 17px;
     }
+    .about-card-stats-title{font-size:.6rem;font-weight:700;color:#243044;margin-bottom:11px}
+    .about-card-stats svg{width:100%;height:62px;display:block;background:#fff;border:1px solid rgba(15,30,48,.08);border-radius:8px;margin-bottom:10px}
+    .about-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .about-stat-tile{background:#fff;border:1px solid rgba(15,30,48,.08);border-radius:7px;padding:8px 9px}
+    .about-stat-tile span{display:block;font-size:.5rem;color:#257634;margin-bottom:3px}
+    .about-stat-tile strong{font-size:.82rem;color:#257634}
+    .about-right{padding-top:10px}
+    .about-right .tag{color:var(--badge);font-size:.72rem;letter-spacing:.14em;margin-bottom:18px}
+    .about-right h2{color:#fff;margin-bottom:24px;font-size:clamp(2.4rem,3.55vw,3.45rem);line-height:.98}
+    .about-right .sub{color:rgba(255,255,255,.68);margin-bottom:32px;font-size:.98rem;line-height:1.75;max-width:520px}
+    .checks{display:flex;flex-direction:column;gap:14px;margin-bottom:36px}
+    .ck,.mini-check{display:flex;align-items:center;gap:12px;font-size:.92rem;color:#fff;font-weight:800}
+    .ck-dot,.mini-check-dot{flex-shrink:0;width:21px;height:21px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center}
+    .ck-dot svg,.mini-check-dot svg{width:10px;height:10px;stroke:#fff;stroke-width:3;fill:none}
 
     /* ── CONTACT ── */
     #contact{background:var(--off)}
@@ -623,7 +610,9 @@
       .why-ph{aspect-ratio:16/9}
       .svc-grid{grid-template-columns:1fr}
       .about-wrap{grid-template-columns:1fr;gap:40px}
-      .about-ph{aspect-ratio:16/9}
+      .about-left{width:100%;min-height:520px;transform:none}
+      .about-right{padding-top:0}
+      .about-right h2{font-size:clamp(2.4rem,9vw,3.6rem)}
       .contact-wrap{grid-template-columns:1fr}
       .stats-inner{grid-template-columns:1fr 1fr}
       .stat-item:nth-child(2){border-right:none}
@@ -653,6 +642,11 @@
       .hero-leads{top:22%;left:-18px;transform:scale(.72)}
       .hero-views{right:-20px;bottom:10%;transform:scale(.72)}
       .hero-features{padding-top:10px}
+      #about{padding:72px 22px 82px}
+      .about-left{width:170%;min-height:360px;transform:scale(.58);transform-origin:top left}
+      .about-right h2{font-size:2.75rem}
+      .about-right .sub{font-size:.98rem}
+      .ck{font-size:.9rem}
       .fr{grid-template-columns:1fr}
       .contact-form-box{padding:28px 22px}
       .why-grid{grid-template-columns:1fr}
@@ -1002,66 +996,75 @@ No templates, no shortcuts, no surprises.</p>
 <section id="about">
   <div class="about-wrap">
 
-    <!-- Left: bento grid -->
     <div class="about-left r">
-      <div class="ab-bento">
-
-        <!-- Cell 1: Site preview (spans both rows) -->
-        <div class="ab-cell ab-cell-preview">
-          <div class="ab-preview-bar">
-            <div class="ab-dot" style="background:#ff5f57"></div>
-            <div class="ab-dot" style="background:#febc2e"></div>
-            <div class="ab-dot" style="background:#28c840"></div>
+      <div class="about-orbit"></div>
+      <div class="about-browser">
+        <div class="about-browser-bar">
+          <div class="about-browser-brand">
+            <img src="uploads/Reverse.png" alt="Localift" />
+            <span>Localift</span>
           </div>
-          <div class="ab-preview-img">
-            <img src="uploads/office1.png" alt="Localift office" />
-          </div>
-          <div class="ab-preview-badge">
-            <div class="ab-preview-badge-dot"></div>
-            <span>100% Custom-Built — No templates. Ever.</span>
+          <div class="about-browser-nav">
+            <span>Services</span><span>Why Us</span><span>Process</span><span>About</span><span>Contact</span>
           </div>
         </div>
-
-        <!-- Cell 2: Why Us (top right) -->
-        <div class="ab-cell ab-cell-why">
-          <div class="ab-cell-why-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h4>Why Local Businesses<br />Choose Localift</h4>
-          <div class="ab-why-row"><div class="ab-why-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Affordable, transparent pricing</span></div>
-          <div class="ab-why-row"><div class="ab-why-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Direct communication, no middlemen</span></div>
-          <div class="ab-why-row"><div class="ab-why-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Websites built to convert visitors</span></div>
-          <div class="ab-why-row"><div class="ab-why-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span>Ongoing support after launch</span></div>
+        <div class="about-browser-body"></div>
+      </div>
+      <div class="about-card about-card-main">
+        <div class="about-kicker">Welcome to Localift</div>
+        <h3>Websites that<br />help you <em>grow.</em></h3>
+        <p>We design and build fast, modern websites for small businesses that want to attract more customers and grow online.</p>
+        <a href="#contact" class="btn btn-g">Get in Touch
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="about-card about-card-process">
+        <h3>Our Process</h3>
+        <div class="process-mini">
+          <div class="process-mini-icon"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="3"/><path d="M9 12l2 2 4-5"/></svg></div>
+          <div><strong>1. Discover</strong><span>We learn about your business and goals.</span></div>
         </div>
-
-        <!-- Cell 3: Stats (bottom right) -->
-        <div class="ab-cell ab-cell-stats">
-          <span class="ab-cell-stats-title">Site Performance</span>
-          <div class="ab-chart">
-            <svg viewBox="0 0 130 52" fill="none">
-              <defs>
-                <linearGradient id="ag2" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#3d7e28" stop-opacity=".25"/>
-                  <stop offset="100%" stop-color="#3d7e28" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <polygon points="0,42 18,36 36,38 52,28 68,32 84,18 100,22 116,10 130,4 130,52 0,52" fill="url(#ag2)"/>
-              <polyline points="0,42 18,36 36,38 52,28 68,32 84,18 100,22 116,10 130,4"
-                stroke="#3d7e28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <circle cx="130" cy="4" r="3" fill="#3d7e28"/>
-            </svg>
-          </div>
-          <div class="ab-stats">
-            <div><span class="ab-stat-label">Visitors</span><span class="ab-stat-val">2.4K</span></div>
-            <div><span class="ab-stat-label">Leads</span><span class="ab-stat-val">320</span></div>
-            <div><span class="ab-stat-label">Growth</span><span class="ab-stat-val grn">+48%</span></div>
-          </div>
+        <div class="process-mini">
+          <div class="process-mini-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4z"/></svg></div>
+          <div><strong>2. Design</strong><span>We create a custom design that fits your brand.</span></div>
         </div>
-
+        <div class="process-mini">
+          <div class="process-mini-icon"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5"/><path d="M16 7l5 5-5 5"/><path d="M14 4l-4 16"/></svg></div>
+          <div><strong>3. Build</strong><span>We develop your site with clean, efficient code.</span></div>
+        </div>
+        <div class="process-mini">
+          <div class="process-mini-icon"><svg viewBox="0 0 24 24"><path d="M12 22s7-4 7-10V5l-7-3-7 3v7c0 6 7 10 7 10z"/><path d="M9 12l2 2 4-5"/></svg></div>
+          <div><strong>4. Launch</strong><span>We test, refine, and launch your new website.</span></div>
+        </div>
+      </div>
+      <div class="about-card about-card-dark">
+        <h3>Why Local Businesses<br />Choose Localift</h3>
+        <div class="mini-check"><div class="mini-check-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Affordable, transparent pricing</div>
+        <div class="mini-check"><div class="mini-check-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Direct communication</div>
+        <div class="mini-check"><div class="mini-check-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Websites built to convert</div>
+        <div class="mini-check"><div class="mini-check-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Ongoing support after launch</div>
+      </div>
+      <div class="about-card about-card-stats">
+        <div class="about-card-stats-title">Site Performance</div>
+        <svg viewBox="0 0 260 80" fill="none">
+          <defs>
+            <linearGradient id="aboutChartFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3d7e28" stop-opacity=".22"/>
+              <stop offset="100%" stop-color="#3d7e28" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0 62 36 36 72 45 108 28 144 38 174 30 198 34 226 8 260 28 260 80 0 80Z" fill="url(#aboutChartFill)"/>
+          <polyline points="0,62 36,36 72,45 108,28 144,38 174,30 198,34 226,8 260,28" stroke="#257634" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="226" cy="8" r="5" fill="#257634"/>
+        </svg>
+        <div class="about-stat-grid">
+          <div class="about-stat-tile"><span>Visitors</span><strong>2.4K</strong></div>
+          <div class="about-stat-tile"><span>Leads</span><strong>320</strong></div>
+          <div class="about-stat-tile"><span>Growth</span><strong>+48%</strong></div>
+        </div>
       </div>
     </div>
 
-    <!-- Right: text content -->
     <div class="about-right">
       <span class="tag r">About Localift</span>
       <h2 class="r r1">Helping local businesses<br />rise online.</h2>
