@@ -52,147 +52,153 @@
     /* ── NAV ── */
     nav{
       position:fixed;top:0;left:0;right:0;z-index:200;
-      height:66px;padding:0 5vw;
+      height:72px;padding:0 4vw;
       display:flex;align-items:center;justify-content:space-between;
-      background:rgba(15,30,48,.92);
-      backdrop-filter:blur(20px);
-      border-bottom:1px solid rgba(255,255,255,.07);
+      background:transparent;
+      backdrop-filter:none;
+      border-bottom:0;
       transition:background .3s;
     }
     .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .nav-brand img{height:32px}
-    .nav-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-.01em}
-    .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
-    .nav-links a{font-size:.875rem;font-weight:500;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;position:relative}
+    .nav-brand img{height:28px;width:28px;object-fit:cover;object-position:center;border-radius:0}
+    .nav-name{font-family:'Playfair Display',serif;font-size:1.42rem;font-weight:900;color:#fff;letter-spacing:-.04em}
+    .nav-links{display:flex;align-items:center;gap:36px;list-style:none;position:absolute;left:50%;transform:translateX(-50%)}
+    .nav-links a{font-size:.86rem;font-weight:500;color:rgba(255,255,255,.86);text-decoration:none;transition:color .2s;position:relative}
     .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--badge);border-radius:2px;transition:width .25s ease}
     .nav-links a:hover{color:#fff}
     .nav-links a:hover::after{width:100%}
     .nav-r{display:flex;align-items:center;gap:14px}
-    .nav-phone{font-size:.875rem;font-weight:500;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+    .nav-phone{display:none;font-size:.875rem;font-weight:500;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
     .nav-phone:hover{color:#fff}
     .nav-cta{
       background:var(--accent);color:#fff;
-      padding:9px 20px;border-radius:var(--btn-radius);
-      font-size:.875rem;font-weight:600;text-decoration:none;
-      transition:background .2s,transform .15s;
+      padding:12px 22px;border-radius:8px;
+      font-size:.92rem;font-weight:700;text-decoration:none;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 14px 32px rgba(16,73,25,.26);
+      transition:background .2s,transform .15s,box-shadow .2s;
     }
+    .nav-cta::after{content:'\00a0\2192';font-size:1.15em;margin-left:4px}
     .nav-cta:hover{background:var(--accent-l);transform:translateY(-1px)}
     .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
     .hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;display:block}
 
     /* ── HERO ── */
     #hero{
-      height:100vh;
-      background:var(--navy);
+      min-height:100vh;
+      background:
+        radial-gradient(circle at 78% 54%,rgba(43,75,111,.28) 0%,rgba(43,75,111,.28) 20%,transparent 20.2%),
+        radial-gradient(circle at 42% 42%,rgba(62,126,40,.08),transparent 28%),
+        linear-gradient(180deg,#061a2b 0%,#071d31 56%,#06192b 100%);
       display:flex;align-items:stretch;
       position:relative;overflow:hidden;
-      padding:0 5vw;
+      padding:0 4vw;
     }
     .hero-dots{
-      position:absolute;inset:0;
-      background-image:radial-gradient(circle,rgba(255,255,255,.038) 1px,transparent 1px);
-      background-size:36px 36px;
+      position:absolute;left:45.2%;top:26.6%;width:150px;height:130px;
+      background-image:radial-gradient(circle,rgba(255,255,255,.58) 1.4px,transparent 1.5px);
+      background-size:17px 17px;
       pointer-events:none;
-      mask-image:radial-gradient(ellipse 70% 80% at 20% 50%,black 15%,transparent 65%);
-      -webkit-mask-image:radial-gradient(ellipse 70% 80% at 20% 50%,black 15%,transparent 65%);
+      opacity:.75;
+      mask-image:none;
+      -webkit-mask-image:none;
     }
     .hero-glow{
       position:absolute;
-      width:640px;height:640px;top:-80px;left:-160px;
-      background:radial-gradient(circle,rgba(79,158,52,.09) 0%,transparent 65%);
+      width:980px;height:980px;top:-330px;left:-320px;
+      background:radial-gradient(circle,rgba(40,75,112,.2) 0%,rgba(21,55,86,.13) 30%,transparent 68%);
       pointer-events:none;
     }
     /* right accent panel */
     .hero-right-panel{
-      position:absolute;top:0;right:0;bottom:0;width:48%;
-      background:linear-gradient(135deg,rgba(28,52,82,.5) 0%,rgba(15,30,48,.15) 100%);
-      border-left:1px solid rgba(255,255,255,.06);
+      position:absolute;top:17%;right:13%;width:520px;height:520px;border-radius:50%;
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(255,255,255,.015);
       pointer-events:none;
     }
     .hero-wrap{
       position:relative;z-index:2;
-      display:grid;grid-template-columns:1fr 1.3fr;
-      gap:60px;align-items:stretch;
-      width:100%;max-width:1300px;margin:0 auto;
-      height:100%;padding:100px 0 60px;box-sizing:border-box;
+      display:grid;grid-template-columns:minmax(380px,.84fr) minmax(540px,1.16fr);
+      gap:48px;align-items:stretch;
+      width:100%;max-width:1390px;margin:0 auto;
+      min-height:100vh;padding:124px 0 58px;box-sizing:border-box;
     }
     /* ── LEFT ── */
-    .hero-left{display:flex;flex-direction:column}
+    .hero-left{display:flex;flex-direction:column;min-width:0}
     .hero-tag{
-      display:block;font-size:.67rem;font-weight:700;letter-spacing:.15em;
+      display:block;font-size:.78rem;font-weight:700;letter-spacing:.12em;
       text-transform:uppercase;color:var(--badge);
       margin-top:auto;margin-bottom:18px;
       opacity:0;animation:up .5s .1s forwards;
     }
     h1{
       font-family:'Playfair Display',serif;
-      font-size:clamp(2.4rem,3.8vw,3.6rem);
-      font-weight:900;line-height:1.08;letter-spacing:-.03em;
-      color:#fff;margin-bottom:18px;
+      font-size:clamp(3.3rem,4.15vw,4.35rem);
+      font-weight:900;line-height:.99;letter-spacing:-.045em;
+      color:#fff;margin-bottom:22px;
       opacity:0;animation:up .7s .22s forwards;
     }
-    h1 em{font-style:normal;color:var(--badge)}
+    h1 em{font-style:normal;color:var(--accent);display:inline-block}
     .hero-p{
-      font-size:.95rem;color:rgba(255,255,255,.48);
-      line-height:1.78;max-width:400px;margin-bottom:34px;font-weight:300;
+      font-size:1rem;color:rgba(255,255,255,.78);
+      line-height:1.7;max-width:455px;margin-bottom:34px;font-weight:400;
       opacity:0;animation:up .7s .34s forwards;
     }
     .hero-btns{
-      display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+      display:flex;gap:24px;flex-wrap:wrap;align-items:center;
       opacity:0;animation:up .7s .46s forwards;
     }
     .btn{
       display:inline-flex;align-items:center;gap:8px;
-      padding:12px 24px;border-radius:var(--btn-radius);
-      font-weight:600;font-size:.88rem;text-decoration:none;
+      padding:13px 23px;border-radius:8px;
+      font-weight:700;font-size:.94rem;text-decoration:none;
       transition:transform .15s,box-shadow .2s,background .2s,border-color .2s;
       border:none;cursor:pointer;
     }
-    .btn-g{background:var(--accent);color:#fff;box-shadow:0 4px 18px rgba(79,158,52,.32)}
+    .btn-g{background:var(--accent);color:#fff;box-shadow:0 12px 30px rgba(51,126,39,.22)}
     .btn-g:hover{background:var(--accent-l);transform:translateY(-2px);box-shadow:0 10px 30px rgba(79,158,52,.44)}
     .btn-o{background:transparent;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.18)}
     .btn-o:hover{border-color:rgba(255,255,255,.42);color:#fff;transform:translateY(-2px)}
     .btn-ghost{
       background:transparent;border:none;cursor:pointer;text-decoration:none;
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:.88rem;font-weight:500;color:rgba(255,255,255,.6);
-      padding:12px 0;
+      display:inline-flex;align-items:center;gap:12px;
+      font-size:.94rem;font-weight:700;color:#fff;
+      padding:0;
       transition:color .2s;
     }
     .btn-ghost:hover{color:#fff}
     .btn-ghost-play{
-      width:28px;height:28px;border-radius:50%;
-      border:1.5px solid rgba(255,255,255,.25);
+      width:42px;height:42px;border-radius:7px;
+      border:1.5px solid rgba(255,255,255,.45);
       display:inline-flex;align-items:center;justify-content:center;
       flex-shrink:0;
       transition:border-color .2s;
     }
     .btn-ghost:hover .btn-ghost-play{border-color:rgba(255,255,255,.55)}
-    .btn-ghost-play svg{width:9px;height:9px;fill:currentColor;margin-left:1px}
+    .btn-ghost-play svg{width:12px;height:14px;fill:currentColor;margin-left:2px}
     .btn-d{background:var(--accent);color:#fff}
     .btn-d:hover{background:var(--accent-l);transform:translateY(-2px)}
     /* Feature row */
     .hero-features{
       display:flex;gap:0;
-      margin-top:auto;padding-top:32px;
-      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:auto;padding-top:48px;
+      border-top:0;
       opacity:0;animation:up .7s .6s forwards;
     }
     .hero-feature{
-      flex:1;padding:0 28px;
-      border-right:1px solid rgba(255,255,255,.08);
+      flex:1;padding:0 24px;
+      border-right:1px solid rgba(255,255,255,.1);
     }
     .hero-feature:first-child{padding-left:0}
     .hero-feature:last-child{border-right:none}
     .hf-icon{
-      width:38px;height:38px;border-radius:9px;
-      background:rgba(79,158,52,.14);border:1px solid rgba(79,158,52,.22);
+      width:32px;height:32px;border-radius:50%;
+      background:rgba(255,255,255,.07);border:1px solid rgba(79,158,52,.22);
       display:flex;align-items:center;justify-content:center;
-      margin-bottom:14px;
+      float:left;margin:0 12px 34px 0;
     }
-    .hf-icon svg{width:17px;height:17px;stroke:var(--badge);stroke-width:2;fill:none}
-    .hero-feature h4{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:-.01em}
-    .hero-feature p{font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.6}
+    .hf-icon svg{width:15px;height:15px;stroke:var(--badge);stroke-width:2;fill:none}
+    .hero-feature h4{font-size:.78rem;font-weight:800;color:#fff;margin-bottom:7px;letter-spacing:-.01em;white-space:nowrap}
+    .hero-feature p{font-size:.75rem;color:rgba(255,255,255,.68);line-height:1.65}
     /* ── RIGHT ── */
     .hero-right{
       position:relative;
@@ -202,45 +208,74 @@
     @keyframes slideIn{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
     /* Main device card */
     .hero-device{
-      border-radius:20px;
+      width:min(40vw,575px);
+      min-width:520px;
+      border-radius:15px;
       overflow:hidden;
-      box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06);
+      background:#061a2b;
+      border:1px solid rgba(159,185,211,.28);
+      box-shadow:0 44px 120px rgba(0,0,0,.42),0 0 0 1px rgba(255,255,255,.03);
+      transform:translate(10px,18px);
     }
-    .hero-device img{width:100%;display:block}
+    .browser-bar{height:26px;background:#11283f;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:8px;padding-left:16px}
+    .browser-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.68)}
+    .browser-dot:nth-child(2){opacity:.8}.browser-dot:nth-child(3){opacity:.25}
+    .mock-site{background:#fff;color:#07192b;font-family:'DM Sans',sans-serif}
+    .mock-top{height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-bottom:1px solid #e7ebf0}
+    .mock-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:.78rem}
+    .mock-logo svg{width:19px;height:26px;stroke:#061a2b;fill:none;stroke-width:1.7}
+    .mock-links{display:flex;align-items:center;gap:22px;font-size:.62rem;color:#061a2b}
+    .mock-links span:first-child{border-bottom:1.5px solid #061a2b;padding-bottom:7px}
+    .mock-quote{background:#061a2b;color:#fff;border-radius:4px;padding:9px 14px;font-weight:800}
+    .mock-main{height:236px;display:grid;grid-template-columns:1fr 1.03fr;position:relative;overflow:hidden}
+    .mock-copy{padding:34px 0 0 30px;position:relative;z-index:2}
+    .mock-copy h3{font-family:'Playfair Display',serif;font-size:1.63rem;line-height:1.12;font-weight:900;letter-spacing:-.025em;color:#061a2b;margin-bottom:13px}
+    .mock-copy h3 em{font-style:normal;color:#257634}
+    .mock-copy p{font-size:.68rem;line-height:1.55;color:#203047;margin-bottom:15px}
+    .mock-copy a{display:inline-flex;background:#061a2b;color:#fff;text-decoration:none;border-radius:4px;padding:9px 14px;font-size:.6rem;font-weight:800}
+    .mock-photo{background:url('uploads/Pluming.png') 74% 46%/170% auto no-repeat;filter:saturate(.9);position:relative}
+    .mock-photo::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.78) 20%,rgba(255,255,255,.08) 58%,transparent 100%)}
+    .mock-services{height:142px;background:#071d31;color:#fff;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;padding:27px 32px 22px}
+    .mock-service-icon{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+    .mock-service-icon svg{width:15px;height:15px;stroke:var(--badge);fill:none;stroke-width:1.8}
+    .mock-services h4{font-size:.64rem;margin-bottom:7px}
+    .mock-services p{font-size:.58rem;line-height:1.6;color:rgba(255,255,255,.78)}
     /* Leads card */
     .hero-leads{
-      position:absolute;bottom:48px;left:-28px;
-      background:#fff;border-radius:14px;
-      padding:14px 18px;
-      box-shadow:0 12px 40px rgba(0,0,0,.22);
-      min-width:170px;
+      position:absolute;top:49%;left:4.5%;
+      background:#fff;border-radius:12px;
+      padding:16px 18px 14px;
+      box-shadow:0 18px 42px rgba(0,0,0,.24);
+      width:138px;
     }
     .hl-label{
-      font-size:.6rem;font-weight:700;letter-spacing:.1em;
-      text-transform:uppercase;color:#9ca3af;
-      margin-bottom:6px;display:block;
+      font-size:.62rem;font-weight:500;letter-spacing:0;
+      text-transform:none;color:#243044;
+      margin-bottom:8px;display:block;
     }
     .hl-row{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
-    .hl-num{font-size:1.6rem;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1}
-    .hl-up{font-size:.72rem;font-weight:700;color:#16a34a}
-    .hl-chart svg{display:block}
+    .hl-num{font-size:1.55rem;font-weight:500;color:#061a2b;letter-spacing:-.04em;line-height:1}
+    .hl-up{font-size:.7rem;font-weight:700;color:#13793e;margin-left:auto}
+    .hl-chart svg{display:block;width:100%;height:42px}
     /* Views card */
     .hero-views{
-      position:absolute;bottom:48px;right:-20px;
-      background:rgba(22,40,64,.95);
-      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:14px;padding:16px 22px;
-      box-shadow:0 8px 32px rgba(0,0,0,.35);
+      position:absolute;bottom:5%;right:-1%;
+      background:#fff;color:#061a2b;
+      border:0;
+      border-radius:12px;padding:18px 21px 15px;
+      box-shadow:0 18px 44px rgba(0,0,0,.28);
+      width:190px;
     }
     .hv-label{
-      font-size:.68rem;font-weight:700;letter-spacing:.1em;
-      text-transform:uppercase;color:rgba(255,255,255,.38);
-      margin-bottom:6px;display:block;
+      font-size:.68rem;font-weight:500;letter-spacing:0;
+      text-transform:none;color:#243044;
+      margin-bottom:10px;display:block;
     }
     .hv-row{display:flex;align-items:baseline;gap:8px}
-    .hv-num{font-size:1.6rem;font-weight:800;color:#fff;letter-spacing:-.02em}
-    .hv-up{font-size:.78rem;font-weight:700;color:var(--badge)}
+    .hv-num{font-size:2.1rem;font-weight:400;color:#061a2b;letter-spacing:-.05em;line-height:1}
+    .hv-up{font-size:.72rem;font-weight:700;color:#13793e;margin-left:auto}
+    .hv-chart{margin-top:14px}
+    .hv-chart svg{display:block;width:100%;height:40px}
 
     @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
@@ -565,10 +600,23 @@
 
     /* ── MOBILE ── */
     @media(max-width:960px){
-      .hero-wrap{grid-template-columns:1fr}
-      .hero-right{display:none}
-      .hero-right-panel{display:none}
-      .hero-features{gap:16px;flex-direction:column}
+      nav{height:78px}
+      .hero-wrap{grid-template-columns:1fr;gap:38px;padding:132px 0 56px}
+      .hero-left{text-align:left}
+      .hero-tag{margin-top:0}
+      h1{font-size:clamp(3.1rem,11vw,4.3rem)}
+      .hero-p{font-size:1.05rem;max-width:620px}
+      .hero-right{min-height:540px;align-items:flex-start;justify-content:center}
+      .hero-right-panel{top:45%;right:-10%;width:390px;height:390px}
+      .hero-dots{left:auto;right:8%;top:48%;opacity:.42}
+      .hero-device{width:min(86vw,620px);min-width:0;transform:none}
+      .hero-leads{left:2%;top:34%;transform:scale(.9);transform-origin:left top}
+      .hero-views{right:0;bottom:0;transform:scale(.9);transform-origin:right bottom}
+      .mock-top{padding:0 24px}
+      .mock-links{gap:16px}
+      .mock-main{height:260px}
+      .mock-services{height:auto;gap:18px;padding:24px}
+      .hero-features{gap:16px;flex-direction:column;padding-top:36px}
       .hero-feature{padding:0!important;border-right:none!important;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:16px!important}
       .hero-feature:last-child{border-bottom:none;padding-bottom:0!important}
       .why-wrap{grid-template-columns:1fr;gap:40px}
@@ -584,15 +632,27 @@
       .proc-steps{grid-template-columns:1fr;gap:24px}
       .proc-steps::before{display:none}
       .nav-links{display:none}
-      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:66px;left:0;right:0;background:rgba(15,30,48,.97);padding:20px 5vw;gap:14px;border-top:1px solid rgba(255,255,255,.07)}
+      .nav-links.open{display:flex;transform:none;flex-direction:column;position:absolute;top:78px;left:0;right:0;background:rgba(15,30,48,.97);padding:20px 5vw;gap:14px;border-top:1px solid rgba(255,255,255,.07)}
       .nav-phone{display:none}
       .hamburger{display:flex}
       .cta-inner{flex-direction:column;text-align:center}
     }
     @media(max-width:540px){
-      h1{font-size:2.6rem}
+      nav{padding:0 22px}
+      .nav-brand img{height:30px;width:30px}
+      .nav-name{font-size:1.45rem}
+      .nav-cta{display:none}
+      #hero{padding:0 22px}
+      h1{font-size:3.05rem}
       .hero-btns{flex-direction:column}
       .btn{width:100%;justify-content:center}
+      .btn-ghost{width:100%;justify-content:center;border:1px solid rgba(255,255,255,.45);border-radius:8px;padding:14px 18px}
+      .btn-ghost-play{width:auto;height:auto;border:0}
+      .hero-right{min-height:410px}
+      .hero-device{width:720px;transform:scale(.52);transform-origin:top center}
+      .hero-leads{top:22%;left:-18px;transform:scale(.72)}
+      .hero-views{right:-20px;bottom:10%;transform:scale(.72)}
+      .hero-features{padding-top:10px}
       .fr{grid-template-columns:1fr}
       .contact-form-box{padding:28px 22px}
       .why-grid{grid-template-columns:1fr}
@@ -645,7 +705,7 @@
       <div class="hero-features">
         <div class="hero-feature">
           <div class="hf-icon">
-            <svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg>
           </div>
           <h4>Fast Turnaround</h4>
           <p>Website delivered on time, every time.</p>
@@ -659,7 +719,7 @@
         </div>
         <div class="hero-feature">
           <div class="hf-icon">
-            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M4 14a8 8 0 0 1 16 0"/><path d="M4 14v3a2 2 0 0 0 2 2h2v-7H6a2 2 0 0 0-2 2z"/><path d="M20 14v3a2 2 0 0 1-2 2h-2v-7h2a2 2 0 0 1 2 2z"/><path d="M16 19a4 4 0 0 1-4 3"/></svg>
           </div>
           <h4>Ongoing Support</h4>
           <p>We're here after launch whenever you need us.</p>
@@ -670,24 +730,67 @@
     <!-- RIGHT -->
     <div class="hero-right">
       <div class="hero-device">
-        <img src="uploads/Pluming.png" alt="Client website example by Localift" />
+        <div class="browser-bar" aria-hidden="true">
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
+        </div>
+        <div class="mock-site">
+          <div class="mock-top">
+            <div class="mock-logo">
+              <svg viewBox="0 0 24 32"><path d="M12 2C7 10 4 15 4 20a8 8 0 0 0 16 0c0-5-3-10-8-18z"/></svg>
+              <span>Precision Plumbing</span>
+            </div>
+            <div class="mock-links">
+              <span>Home</span>
+              <span>Services</span>
+              <span>About</span>
+              <strong class="mock-quote">Request a Quote</strong>
+            </div>
+          </div>
+          <div class="mock-main">
+            <div class="mock-copy">
+              <h3>Reliable plumbing<br />services you can<br /><em>count on.</em></h3>
+              <p>Honest pricing. Quality work.<br />Done right the first time.</p>
+              <a href="#contact">Request a Quote</a>
+            </div>
+            <div class="mock-photo" aria-hidden="true"></div>
+          </div>
+          <div class="mock-services">
+            <div>
+              <div class="mock-service-icon"><svg viewBox="0 0 24 24"><path d="M12 3c-4 5-6 8-6 12a6 6 0 0 0 12 0c0-4-2-7-6-12z"/><path d="M15 10l-3 3v4"/></svg></div>
+              <h4>Residential Plumbing</h4>
+              <p>From repairs to<br />full installations.</p>
+            </div>
+            <div>
+              <div class="mock-service-icon"><svg viewBox="0 0 24 24"><path d="M20 13a8 8 0 1 1-3-6"/><path d="M12 8v5l4-2"/></svg></div>
+              <h4>Drain Cleaning</h4>
+              <p>Fast, effective solutions<br />for any issue.</p>
+            </div>
+            <div>
+              <div class="mock-service-icon"><svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="16" rx="2"/><path d="M10 10h4l-2 3h3l-5 5 1.5-4H9z"/></svg></div>
+              <h4>Water Heaters</h4>
+              <p>Installation, repair,<br />and maintenance.</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="hero-leads">
         <span class="hl-label">New Leads</span>
         <div class="hl-row">
           <span class="hl-num">128</span>
-          <span class="hl-up">↑ +27%</span>
+          <span class="hl-up">↑ 32%</span>
         </div>
         <div class="hl-chart">
-          <svg width="130" height="36" viewBox="0 0 130 36" fill="none">
+          <svg viewBox="0 0 130 50" fill="none">
             <defs>
               <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stop-color="#16a34a" stop-opacity=".18"/>
                 <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
               </linearGradient>
             </defs>
-            <path d="M0 30 C15 28 22 24 35 20 C48 16 55 14 68 10 C81 6 90 5 104 3 C112 2 120 2 130 1 L130 36 L0 36Z" fill="url(#chartFill)"/>
-            <polyline points="0,30 35,20 68,10 104,3 130,1" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M0 40 17 28 32 33 48 21 64 30 80 24 93 27 106 7 122 24 130 19 130 50 0 50Z" fill="url(#chartFill)"/>
+            <polyline points="0,40 17,28 32,33 48,21 64,30 80,24 93,27 106,7 122,24 130,19" stroke="#166a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
           </svg>
         </div>
       </div>
@@ -695,7 +798,13 @@
         <span class="hv-label">Page Views</span>
         <div class="hv-row">
           <span class="hv-num">3.2K</span>
-          <span class="hv-up">+7%</span>
+          <span class="hv-up">↑ 47%</span>
+        </div>
+        <div class="hv-chart">
+          <svg viewBox="0 0 185 48" fill="none">
+            <path d="M0 40 18 29 39 33 62 22 86 31 106 23 127 26 148 6 170 25 185 18 185 48 0 48Z" fill="url(#chartFill)"/>
+            <polyline points="0,40 18,29 39,33 62,22 86,31 106,23 127,26 148,6 170,25 185,18" stroke="#166a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
         </div>
       </div>
     </div>
