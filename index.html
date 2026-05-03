@@ -220,26 +220,8 @@
     .browser-bar{height:26px;background:#11283f;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:8px;padding-left:16px}
     .browser-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.68)}
     .browser-dot:nth-child(2){opacity:.8}.browser-dot:nth-child(3){opacity:.25}
-    .mock-site{background:#fff;color:#07192b;font-family:'DM Sans',sans-serif}
-    .mock-top{height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-bottom:1px solid #e7ebf0}
-    .mock-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:.78rem}
-    .mock-logo svg{width:19px;height:26px;stroke:#061a2b;fill:none;stroke-width:1.7}
-    .mock-links{display:flex;align-items:center;gap:22px;font-size:.62rem;color:#061a2b}
-    .mock-links span:first-child{border-bottom:1.5px solid #061a2b;padding-bottom:7px}
-    .mock-quote{background:#061a2b;color:#fff;border-radius:4px;padding:9px 14px;font-weight:800}
-    .mock-main{height:236px;display:grid;grid-template-columns:1fr 1.03fr;position:relative;overflow:hidden}
-    .mock-copy{padding:34px 0 0 30px;position:relative;z-index:2}
-    .mock-copy h3{font-family:'Playfair Display',serif;font-size:1.63rem;line-height:1.12;font-weight:900;letter-spacing:-.025em;color:#061a2b;margin-bottom:13px}
-    .mock-copy h3 em{font-style:normal;color:#257634}
-    .mock-copy p{font-size:.68rem;line-height:1.55;color:#203047;margin-bottom:15px}
-    .mock-copy a{display:inline-flex;background:#061a2b;color:#fff;text-decoration:none;border-radius:4px;padding:9px 14px;font-size:.6rem;font-weight:800}
-    .mock-photo{background:url('uploads/Pluming.png') 74% 46%/170% auto no-repeat;filter:saturate(.9);position:relative}
-    .mock-photo::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.78) 20%,rgba(255,255,255,.08) 58%,transparent 100%)}
-    .mock-services{height:142px;background:#071d31;color:#fff;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;padding:27px 32px 22px}
-    .mock-service-icon{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;margin-bottom:10px}
-    .mock-service-icon svg{width:15px;height:15px;stroke:var(--badge);fill:none;stroke-width:1.8}
-    .mock-services h4{font-size:.64rem;margin-bottom:7px}
-    .mock-services p{font-size:.58rem;line-height:1.6;color:rgba(255,255,255,.78)}
+    .mock-site{background:#fff;overflow:hidden}
+    .mock-screenshot{width:100%;display:block}
     /* Leads card */
     .hero-leads{
       position:absolute;top:49%;left:4.5%;
@@ -599,10 +581,6 @@
       .hero-device{width:min(86vw,620px);min-width:0;transform:none}
       .hero-leads{left:2%;top:34%;transform:scale(.9);transform-origin:left top}
       .hero-views{right:0;bottom:0;transform:scale(.9);transform-origin:right bottom}
-      .mock-top{padding:0 24px}
-      .mock-links{gap:16px}
-      .mock-main{height:260px}
-      .mock-services{height:auto;gap:18px;padding:24px}
       .hero-features{gap:16px;flex-direction:column;padding-top:36px}
       .hero-feature{padding:0!important;border-right:none!important;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:16px!important}
       .hero-feature:last-child{border-bottom:none;padding-bottom:0!important}
@@ -730,43 +708,7 @@
           <span class="browser-dot"></span>
         </div>
         <div class="mock-site">
-          <div class="mock-top">
-            <div class="mock-logo">
-              <svg viewBox="0 0 24 32"><path d="M12 2C7 10 4 15 4 20a8 8 0 0 0 16 0c0-5-3-10-8-18z"/></svg>
-              <span>Precision Plumbing</span>
-            </div>
-            <div class="mock-links">
-              <span>Home</span>
-              <span>Services</span>
-              <span>About</span>
-              <strong class="mock-quote">Request a Quote</strong>
-            </div>
-          </div>
-          <div class="mock-main">
-            <div class="mock-copy">
-              <h3>Reliable plumbing<br />services you can<br /><em>count on.</em></h3>
-              <p>Honest pricing. Quality work.<br />Done right the first time.</p>
-              <a href="#contact">Request a Quote</a>
-            </div>
-            <div class="mock-photo" aria-hidden="true"></div>
-          </div>
-          <div class="mock-services">
-            <div>
-              <div class="mock-service-icon"><svg viewBox="0 0 24 24"><path d="M12 3c-4 5-6 8-6 12a6 6 0 0 0 12 0c0-4-2-7-6-12z"/><path d="M15 10l-3 3v4"/></svg></div>
-              <h4>Residential Plumbing</h4>
-              <p>From repairs to<br />full installations.</p>
-            </div>
-            <div>
-              <div class="mock-service-icon"><svg viewBox="0 0 24 24"><path d="M20 13a8 8 0 1 1-3-6"/><path d="M12 8v5l4-2"/></svg></div>
-              <h4>Drain Cleaning</h4>
-              <p>Fast, effective solutions<br />for any issue.</p>
-            </div>
-            <div>
-              <div class="mock-service-icon"><svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="16" rx="2"/><path d="M10 10h4l-2 3h3l-5 5 1.5-4H9z"/></svg></div>
-              <h4>Water Heaters</h4>
-              <p>Installation, repair,<br />and maintenance.</p>
-            </div>
-          </div>
+          <img class="mock-screenshot" src="uploads/HeroImage.png" alt="BrightPath Dental website example" />
         </div>
       </div>
       <div class="hero-leads">
