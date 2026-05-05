@@ -505,7 +505,7 @@
 
     /* ── CONTACT ── */
     #contact{background:var(--off)}
-    .contact-wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:start;max-width:1300px;margin:0 auto}
+    .contact-wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:stretch;max-width:1300px;margin:0 auto}
     .contact-info h2{margin-bottom:16px}
     .contact-info .sub{margin-bottom:36px}
     .ci{display:flex;align-items:center;gap:13px;margin-bottom:14px}
@@ -545,6 +545,11 @@
     .form-ok h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:6px}
     .form-ok p{font-size:.88rem;color:var(--muted)}
 
+    /* ── CONTACT LOGO ── */
+    .contact-info{position:relative;overflow:hidden}
+    .contact-logo-outline{position:absolute;bottom:-19%;left:0;right:0;pointer-events:none}
+    .contact-logo-outline img{width:100%;height:auto;display:block;opacity:.08;filter:grayscale(1)}
+
     /* ── CTA BAND ── */
     #cta{background:var(--navy);padding:80px 5vw}
     .cta-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
@@ -575,6 +580,82 @@
     .r-r.v{opacity:1;transform:none}
     /* Stat counter shimmer placeholder */
     .stat-num[data-count]{display:block}
+
+    /* ── PRICING ── */
+    #pricing{background:var(--white)}
+    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+    .price-card{
+      border:1.5px solid var(--border);
+      border-radius:var(--card-radius);
+      padding:36px 32px;
+      background:var(--off);
+      position:relative;
+      display:flex;flex-direction:column;
+      transition:border-color .2s,box-shadow .2s,transform .2s;
+    }
+    .price-card:hover{border-color:rgba(79,158,52,.3);box-shadow:0 12px 40px rgba(0,0,0,.07);transform:translateY(-4px)}
+    .price-card--featured{
+      background:var(--navy);
+      border-color:rgba(79,158,52,.4);
+      box-shadow:0 20px 64px rgba(15,30,48,.18),0 0 0 1px rgba(79,158,52,.15);
+    }
+    .price-card--featured:hover{border-color:rgba(79,158,52,.6);transform:translateY(-6px);box-shadow:0 24px 80px rgba(15,30,48,.24)}
+    .price-badge{
+      display:inline-block;
+      background:var(--accent);color:#fff;
+      font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+      padding:4px 12px;border-radius:100px;
+      margin-bottom:18px;width:fit-content;
+    }
+    .price-tier{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+    .price-card--featured .price-tier{color:var(--badge)}
+    .price-from{font-size:.72rem;color:var(--muted);margin-bottom:2px}
+    .price-card--featured .price-from{color:rgba(255,255,255,.45)}
+    .price-val{
+      font-family:'Playfair Display',serif;
+      font-size:3rem;font-weight:900;letter-spacing:-.05em;
+      color:var(--text);line-height:1;margin-bottom:16px;
+    }
+    .price-card--featured .price-val{color:#fff}
+    .price-desc{font-size:.85rem;color:var(--muted);line-height:1.65;margin-bottom:28px;font-weight:300}
+    .price-card--featured .price-desc{color:rgba(255,255,255,.55)}
+    .price-feats{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:32px;flex:1}
+    .price-feats li{
+      font-size:.85rem;color:var(--text);font-weight:400;
+      display:flex;align-items:flex-start;gap:10px;line-height:1.4;
+    }
+    .price-feats li::before{
+      content:'';flex-shrink:0;margin-top:2px;
+      width:16px;height:16px;border-radius:50%;
+      background-color:var(--accent-g);
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12' stroke='%233d7e28' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-size:10px;background-repeat:no-repeat;background-position:center;
+    }
+    .price-card--featured .price-feats li{color:rgba(255,255,255,.82)}
+    .price-card--featured .price-feats li::before{
+      background-color:rgba(79,158,52,.22);
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12' stroke='%238edf62' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+    .price-btn{width:100%;justify-content:center;margin-top:auto}
+    .price-card:not(.price-card--featured) .price-btn{background:var(--navy);color:#fff}
+    .price-card:not(.price-card--featured) .price-btn:hover{background:var(--navy-lt);transform:translateY(-2px)}
+    .price-addon{
+      margin-top:28px;
+      background:var(--off);border:1.5px solid var(--border);
+      border-radius:var(--card-radius);
+      padding:26px 36px;
+      display:flex;align-items:center;gap:32px;flex-wrap:wrap;
+    }
+    .price-addon-left{display:flex;align-items:center;gap:16px;flex:1;min-width:220px}
+    .price-addon-left h4{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:4px}
+    .price-addon-left p{font-size:.82rem;color:var(--muted);font-weight:300;line-height:1.55}
+    .price-addon-plans{display:flex;align-items:center;gap:28px;flex-shrink:0}
+    .price-addon-plan{display:flex;flex-direction:column;gap:3px}
+    .pad-name{font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+    .pad-price{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:900;color:var(--text);letter-spacing:-.04em;line-height:1.1}
+    .pad-price span{font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:400;color:var(--muted);letter-spacing:0}
+    .pad-desc{font-size:.74rem;color:var(--muted);font-weight:300}
+    .price-addon-sep{width:1px;height:44px;background:var(--border)}
 
     /* ── MOBILE ── */
     @media(max-width:960px){
@@ -607,6 +688,10 @@
       .stat-item:nth-child(4){border-right:none;border-top:1px solid rgba(255,255,255,.07)}
       .proc-steps{grid-template-columns:1fr;gap:24px}
       .proc-steps::before{display:none}
+      .price-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
+      .price-addon{flex-direction:column;gap:20px}
+      .price-addon-left{flex-direction:column;text-align:center}
+      .price-addon-plans{justify-content:center}
       .nav-links{display:none}
       .nav-links.open{display:flex;transform:none;flex-direction:column;position:absolute;top:78px;left:0;right:0;background:rgba(15,30,48,.97);padding:20px 5vw;gap:14px;border-top:1px solid rgba(255,255,255,.07)}
       .nav-phone{display:none}
@@ -653,6 +738,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#why">Why Us</a></li>
     <li><a href="#process">Process</a></li>
+    <li><a href="#pricing">Pricing</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -946,6 +1032,93 @@ No templates, no shortcuts, no surprises.</p>
   </div>
 </section>
 
+<!-- PRICING -->
+<section id="pricing" class="sec">
+  <div class="inner">
+    <div class="proc-head">
+      <span class="tag r">Pricing</span>
+      <h2 class="r r1">Simple, honest pricing.</h2>
+      <p class="sub r r2" style="margin:12px auto 0">No agency markup. No hidden fees. Just clear prices for real work.</p>
+    </div>
+    <div class="price-grid">
+      <!-- Starter -->
+      <div class="price-card r r1">
+        <span class="price-tier">Starter</span>
+        <div class="price-from">from</div>
+        <div class="price-val">$599</div>
+        <p class="price-desc">Perfect for new businesses getting online for the first time.</p>
+        <ul class="price-feats">
+          <li>3–5 page custom website</li>
+          <li>Mobile-first responsive design</li>
+          <li>Contact form &amp; Google Maps</li>
+          <li>Basic local SEO setup</li>
+          <li>1 revision round</li>
+        </ul>
+        <a href="#contact" class="btn price-btn">Get Started →</a>
+      </div>
+      <!-- Growth (featured) -->
+      <div class="price-card price-card--featured r r2">
+        <span class="price-badge">Most Popular</span>
+        <span class="price-tier">Growth</span>
+        <div class="price-from">from</div>
+        <div class="price-val">$1,199</div>
+        <p class="price-desc">For businesses ready to compete online and win more local customers.</p>
+        <ul class="price-feats">
+          <li>5–8 page custom website</li>
+          <li>Full local SEO structure</li>
+          <li>Review section &amp; social links</li>
+          <li>Speed &amp; performance optimized</li>
+          <li>2 revision rounds</li>
+          <li>30-day post-launch support</li>
+        </ul>
+        <a href="#contact" class="btn btn-g price-btn">Get Started →</a>
+      </div>
+      <!-- Premium -->
+      <div class="price-card r r3">
+        <span class="price-tier">Premium</span>
+        <div class="price-from">from</div>
+        <div class="price-val">$2,199</div>
+        <p class="price-desc">Full-service for businesses that want every advantage online.</p>
+        <ul class="price-feats">
+          <li>Everything in Growth</li>
+          <li>Online booking / scheduling</li>
+          <li>Blog or news section</li>
+          <li>Advanced SEO setup</li>
+          <li>Unlimited revisions</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#contact" class="btn price-btn">Get Started →</a>
+      </div>
+    </div>
+    <!-- Monthly care plans -->
+    <div class="price-addon r r4">
+      <div class="price-addon-left">
+        <div class="w-ic" style="flex-shrink:0">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h4>Monthly Care Plans</h4>
+          <p>Keep your site fast, secure &amp; up to date — without lifting a finger.</p>
+        </div>
+      </div>
+      <div class="price-addon-plans">
+        <div class="price-addon-plan">
+          <span class="pad-name">Basic Care</span>
+          <span class="pad-price">$69<span>/mo</span></span>
+          <span class="pad-desc">Hosting, security &amp; 1 minor edit/mo</span>
+        </div>
+        <div class="price-addon-sep"></div>
+        <div class="price-addon-plan">
+          <span class="pad-name">Growth Care</span>
+          <span class="pad-price">$129<span>/mo</span></span>
+          <span class="pad-desc">Content updates, SEO check-ins &amp; priority support</span>
+        </div>
+      </div>
+      <a href="#contact" class="btn" style="flex-shrink:0;background:var(--navy);color:#fff">Add a Plan →</a>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="about-wrap">
@@ -1049,6 +1222,10 @@ No templates, no shortcuts, no surprises.</p>
       <div class="ci r r3">
         <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.58 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l1.62-1.62a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
         <a href="tel:+17868624586">(786) 862-4586</a>
+      </div>
+      <!-- Decorative logo outline -->
+      <div class="contact-logo-outline r r4" aria-hidden="true">
+        <img src="uploads/Main - Transparent.png" alt="" />
       </div>
     </div>
     <div class="contact-form-box r r2">
