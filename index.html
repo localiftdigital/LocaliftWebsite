@@ -60,7 +60,7 @@
       transition:background .3s;
     }
     .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .nav-brand img{height:28px;width:28px;object-fit:cover;object-position:center;border-radius:0}
+    .nav-brand img{height:28px;width:28px;object-fit:cover;object-position:center;border-radius:0;mix-blend-mode:screen}
     .nav-name{font-family:'Playfair Display',serif;font-size:1.42rem;font-weight:900;color:#fff;letter-spacing:-.04em}
     .nav-links{display:flex;align-items:center;gap:36px;list-style:none;position:absolute;left:50%;transform:translateX(-50%)}
     .nav-links a{font-size:.86rem;font-weight:500;color:rgba(255,255,255,.86);text-decoration:none;transition:color .2s;position:relative}
@@ -94,7 +94,7 @@
       padding:0 4vw;
     }
     .hero-dots{
-      position:absolute;left:45.2%;top:26.6%;width:150px;height:130px;
+      position:absolute;left:35%;top:22.6%;width:150px;height:130px;
       background-image:radial-gradient(circle,rgba(255,255,255,.58) 1.4px,transparent 1.5px);
       background-size:17px 17px;
       pointer-events:none;
@@ -117,9 +117,9 @@
     }
     .hero-wrap{
       position:relative;z-index:2;
-      display:grid;grid-template-columns:minmax(380px,.84fr) minmax(540px,1.16fr);
-      gap:48px;align-items:stretch;
-      width:100%;max-width:1390px;margin:0 auto;
+      display:grid;grid-template-columns:minmax(380px,.80fr) minmax(600px,1.20fr);
+      gap:40px;align-items:stretch;
+      width:100%;max-width:1440px;margin:0 auto;
       min-height:100vh;padding:124px 0 58px;box-sizing:border-box;
     }
     /* ── LEFT ── */
@@ -187,6 +187,7 @@
     .hero-feature{
       flex:1;padding:0 24px;
       border-right:1px solid rgba(255,255,255,.1);
+      display:flex;flex-direction:column;
     }
     .hero-feature:first-child{padding-left:0}
     .hero-feature:last-child{border-right:none}
@@ -194,7 +195,7 @@
       width:32px;height:32px;border-radius:50%;
       background:rgba(255,255,255,.07);border:1px solid rgba(79,158,52,.22);
       display:flex;align-items:center;justify-content:center;
-      float:left;margin:0 12px 34px 0;
+      flex-shrink:0;margin-bottom:10px;
     }
     .hf-icon svg{width:15px;height:15px;stroke:var(--badge);stroke-width:2;fill:none}
     .hero-feature h4{font-size:.78rem;font-weight:800;color:#fff;margin-bottom:7px;letter-spacing:-.01em;white-space:nowrap}
@@ -206,10 +207,16 @@
       opacity:0;animation:slideIn .9s .3s forwards;
     }
     @keyframes slideIn{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
+    /* Device wrapper — cards are positioned relative to this */
+    .hero-device-wrap{
+      position:relative;
+      display:inline-block;
+      transform:translateY(-4%);
+    }
     /* Main device card */
     .hero-device{
-      width:min(40vw,575px);
-      min-width:520px;
+      width:min(50vw,700px);
+      min-width:600px;
       border-radius:15px;
       overflow:hidden;
       background:#061a2b;
@@ -224,11 +231,12 @@
     .mock-screenshot{width:100%;display:block}
     /* Leads card */
     .hero-leads{
-      position:absolute;top:49%;left:4.5%;
+      position:absolute;top:49%;left:-7%;
       background:#fff;border-radius:12px;
       padding:16px 18px 14px;
       box-shadow:0 18px 42px rgba(0,0,0,.24);
       width:138px;
+      transform:translateY(18px);
     }
     .hl-label{
       font-size:.62rem;font-weight:500;letter-spacing:0;
@@ -241,12 +249,13 @@
     .hl-chart svg{display:block;width:100%;height:42px}
     /* Views card */
     .hero-views{
-      position:absolute;bottom:5%;right:-1%;
+      position:absolute;bottom:-3%;right:-7%;
       background:#fff;color:#061a2b;
       border:0;
       border-radius:12px;padding:18px 21px 15px;
       box-shadow:0 18px 44px rgba(0,0,0,.28);
       width:190px;
+      transform:translateY(18px);
     }
     .hv-label{
       font-size:.68rem;font-weight:500;letter-spacing:0;
@@ -579,8 +588,8 @@
       .hero-right-panel{top:45%;right:-10%;width:390px;height:390px}
       .hero-dots{left:auto;right:8%;top:48%;opacity:.42}
       .hero-device{width:min(86vw,620px);min-width:0;transform:none}
-      .hero-leads{left:2%;top:34%;transform:scale(.9);transform-origin:left top}
-      .hero-views{right:0;bottom:0;transform:scale(.9);transform-origin:right bottom}
+      .hero-leads{left:-2%;top:34%;transform:scale(.9);transform-origin:left top}
+      .hero-views{right:-2%;bottom:0;transform:scale(.9);transform-origin:right bottom}
       .hero-features{gap:16px;flex-direction:column;padding-top:36px}
       .hero-feature{padding:0!important;border-right:none!important;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:16px!important}
       .hero-feature:last-child{border-bottom:none;padding-bottom:0!important}
@@ -616,9 +625,10 @@
       .btn-ghost{width:100%;justify-content:center;border:1px solid rgba(255,255,255,.45);border-radius:8px;padding:14px 18px}
       .btn-ghost-play{width:auto;height:auto;border:0}
       .hero-right{min-height:410px}
-      .hero-device{width:720px;transform:scale(.52);transform-origin:top center}
-      .hero-leads{top:22%;left:-18px;transform:scale(.72)}
-      .hero-views{right:-20px;bottom:10%;transform:scale(.72)}
+      .hero-device-wrap{width:720px;transform:scale(.52);transform-origin:top center}
+      .hero-device{min-width:0;width:100%;transform:none}
+      .hero-leads{top:49%;left:-7%;transform:translateY(18px) scale(.72);transform-origin:left center}
+      .hero-views{bottom:-3%;right:-7%;transform:translateY(18px) scale(.72);transform-origin:right bottom}
       .hero-features{padding-top:10px}
       #about{padding:72px 22px 82px}
       .about-left{width:170%;min-height:360px;transform:scale(.58);transform-origin:top left}
@@ -701,46 +711,48 @@
 
     <!-- RIGHT -->
     <div class="hero-right">
-      <div class="hero-device">
-        <div class="browser-bar" aria-hidden="true">
-          <span class="browser-dot"></span>
-          <span class="browser-dot"></span>
-          <span class="browser-dot"></span>
+      <div class="hero-device-wrap">
+        <div class="hero-device">
+          <div class="browser-bar" aria-hidden="true">
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+          </div>
+          <div class="mock-site">
+            <img class="mock-screenshot" src="uploads/HeroImage.png" alt="BrightPath Dental website example" />
+          </div>
         </div>
-        <div class="mock-site">
-          <img class="mock-screenshot" src="uploads/HeroImage.png" alt="BrightPath Dental website example" />
+        <div class="hero-leads">
+          <span class="hl-label">New Leads</span>
+          <div class="hl-row">
+            <span class="hl-num">128</span>
+            <span class="hl-up">↑ 32%</span>
+          </div>
+          <div class="hl-chart">
+            <svg viewBox="0 0 130 50" fill="none">
+              <defs>
+                <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#16a34a" stop-opacity=".18"/>
+                  <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0 40 17 28 32 33 48 21 64 30 80 24 93 27 106 7 122 24 130 19 130 50 0 50Z" fill="url(#chartFill)"/>
+              <polyline points="0,40 17,28 32,33 48,21 64,30 80,24 93,27 106,7 122,24 130,19" stroke="#166a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
         </div>
-      </div>
-      <div class="hero-leads">
-        <span class="hl-label">New Leads</span>
-        <div class="hl-row">
-          <span class="hl-num">128</span>
-          <span class="hl-up">↑ 32%</span>
-        </div>
-        <div class="hl-chart">
-          <svg viewBox="0 0 130 50" fill="none">
-            <defs>
-              <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#16a34a" stop-opacity=".18"/>
-                <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path d="M0 40 17 28 32 33 48 21 64 30 80 24 93 27 106 7 122 24 130 19 130 50 0 50Z" fill="url(#chartFill)"/>
-            <polyline points="0,40 17,28 32,33 48,21 64,30 80,24 93,27 106,7 122,24 130,19" stroke="#166a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-        </div>
-      </div>
-      <div class="hero-views">
-        <span class="hv-label">Page Views</span>
-        <div class="hv-row">
-          <span class="hv-num">3.2K</span>
-          <span class="hv-up">↑ 47%</span>
-        </div>
-        <div class="hv-chart">
-          <svg viewBox="0 0 185 48" fill="none">
-            <path d="M0 40 18 29 39 33 62 22 86 31 106 23 127 26 148 6 170 25 185 18 185 48 0 48Z" fill="url(#chartFill)"/>
-            <polyline points="0,40 18,29 39,33 62,22 86,31 106,23 127,26 148,6 170,25 185,18" stroke="#166a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
+        <div class="hero-views">
+          <span class="hv-label">Page Views</span>
+          <div class="hv-row">
+            <span class="hv-num">3.2K</span>
+            <span class="hv-up">↑ 47%</span>
+          </div>
+          <div class="hv-chart">
+            <svg viewBox="0 0 185 48" fill="none">
+              <path d="M0 40 18 29 39 33 62 22 86 31 106 23 127 26 148 6 170 25 185 18 185 48 0 48Z" fill="url(#chartFill)"/>
+              <polyline points="0,40 18,29 39,33 62,22 86,31 106,23 127,26 148,6 170,25 185,18" stroke="#166a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -1028,7 +1040,7 @@ No templates, no shortcuts, no surprises.</p>
   <div class="contact-wrap">
     <div class="contact-info">
       <span class="tag r">Contact Us</span>
-      <h2 class="r r1">Ready to lift<br />your business?</h2>
+      <h2 class="r r1">Ready to <em style="font-style:normal;color:var(--accent)">lift</em><br />your business?</h2>
       <p class="sub r r2" style="margin-bottom:36px">Drop us a message, and we'll get back to you within 24 hours. No pressure, no jargon, just a real conversation about your website.</p>
       <div class="ci r r3">
         <div class="ci-icon"><svg viewBox="0 0 24 24" style="stroke: rgb(255, 255, 255)"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
